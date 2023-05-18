@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProjectCard = ({ project }) => {
   return (
+    <Link to='/gigs'>
     <div className='shadow-slate-300  shadow-lg w-full sm:w-3/4 md:w-10/12 lg:w-3/4 xl:w-10/12 p-2'>
       <div className='  w-full h-80 bg-white rounded-md overflow-hidden relative'>
         <div className='top h-5/6'>
@@ -26,6 +28,7 @@ const ProjectCard = ({ project }) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 
