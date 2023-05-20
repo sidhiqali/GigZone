@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import logoWhite from '../images/logo4.png';
 import logoBlack from '../images/logo5.png';
 import { Link, useLocation } from 'react-router-dom';
-import {MdSearch} from 'react-icons/md'
-import man from '../images/man.png'
+import { MdSearch } from 'react-icons/md';
+import man from '../images/man.png';
 const Header = () => {
   const [active, setActive] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
@@ -70,25 +70,55 @@ const Header = () => {
                 <span className='ml-2'>{currentUser.userName}</span>
               </div>
               {userOpen && (
-                <div className='options transition-all ease cursor-pointer flex flex-col absolute border-2 rounded-md py-5 px-5 md:px-9 mt-3 bg-slate-300 text-blue-900 justify-center items-center'>
+                <div className=' z-10 options transition-all ease cursor-pointer flex flex-col absolute border-2 rounded-md py-5 px-5 md:px-9 mt-3 bg-slate-300 text-blue-900 justify-center items-center'>
                   {currentUser.isSeller && (
                     <>
                       <Link to='/mygigs'>
-                        <span>Gigs</span>
+                        <span
+                          onClick={() => {
+                            setUserOpen(!userOpen);
+                          }}
+                        >
+                          Gigs
+                        </span>
                       </Link>
                       <Link to='/add'>
-                        <span>Add Gigs</span>
+                        <span
+                          onClick={() => {
+                            setUserOpen(!userOpen);
+                          }}
+                        >
+                          Add Gigs
+                        </span>
                       </Link>
                     </>
                   )}
                   <Link to='/order'>
-                    <span>Order</span>
+                    <span
+                      onClick={() => {
+                        setUserOpen(!userOpen);
+                      }}
+                    >
+                      Order
+                    </span>
                   </Link>
                   <Link to='/messages'>
-                    <span>Messages</span>
+                    <span
+                      onClick={() => {
+                        setUserOpen(!userOpen);
+                      }}
+                    >
+                      Messages
+                    </span>
                   </Link>
                   <Link to='/logout'>
-                    <span>Logout</span>
+                    <span
+                      onClick={() => {
+                        setUserOpen(!userOpen);
+                      }}
+                    >
+                      Logout
+                    </span>
                   </Link>
                 </div>
               )}
@@ -96,33 +126,43 @@ const Header = () => {
           )}
         </div>
       </div>
-      {
-        pathname === '/' ? (
-          <div className='Feature-section py-14 md:py-36 flex'>
-    
-        <div className="flex flex-col justify-center w-full ">
-          <h1 className='text-white font-bold text-6xl sm:mx-5 mx-5 lg:mx-48 max-w-lg md:max-w-xl p-5'>Find the best freelance service for you</h1>
-          <div className="mx-5 sm:mx-10 lg:mx-48 max-w-2xl flex p-5">
-            <input placeholder='Search for any service...' type="text" className='w-96 md:w-[450px] h-12 rounded-l-md  border-indigo-700 p-4' />
-            <MdSearch className='w-11 md:w-[75px] h-12 rounded-r-md  bg-indigo-700 text-white p-2' />
+      {pathname === '/' ? (
+        <div className='Feature-section py-14 md:py-36 flex'>
+          <div className='flex flex-col justify-center w-full '>
+            <h1 className='text-white font-bold text-6xl sm:mx-5 mx-5 lg:mx-48 max-w-lg md:max-w-xl p-5'>
+              Find the best freelance service for you
+            </h1>
+            <div className='mx-5 sm:mx-10 lg:mx-48 max-w-2xl flex p-5'>
+              <input
+                placeholder='Search for any service...'
+                type='text'
+                className='w-96 md:w-[450px] h-12 rounded-l-md  border-indigo-700 p-4'
+              />
+              <MdSearch className='w-11 md:w-[75px] h-12 rounded-r-md  bg-indigo-700 text-white p-2' />
+            </div>
+            <div className='popular hidden text-sm md:flex sm:mx-10 mx-5 lg:mx-48 max-w-lg md:max-w-lg justify-between p-5 text-white items-center'>
+              <span className='text-lg'>Popular:</span>
+              <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
+                Web design
+              </button>
+              <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
+                Web design
+              </button>
+              <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
+                Logo Design
+              </button>
+              <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
+                AI services
+              </button>
+            </div>
           </div>
-          <div className="popular hidden text-sm md:flex sm:mx-10 mx-5 lg:mx-48 max-w-lg md:max-w-lg justify-between p-5 text-white items-center">
-            <span className='text-lg'>Popular:</span>
-            <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>Web design</button>
-            <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>Web design</button>
-            <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>Logo Design</button>
-            <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>AI services</button>
-          </div>
-        </div>
-        {/* <div className="right md:flex justify-center items-center hidden w-96">
+          {/* <div className="right md:flex justify-center items-center hidden w-96">
           <img src={man} alt='logo' />
         </div> */}
         </div>
-
-        ) :(
-          ''
-        )
-      }
+      ) : (
+        ''
+      )}
     </div>
   );
 };
