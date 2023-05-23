@@ -47,10 +47,26 @@ const Gig = () => {
                 prevArrow={<PrevArrow />}
                 nextArrow={<NextArrow />}
               >
-                <img className='px-48 min-h-[200px] lg:min-h-[400px]' src={avatar} alt='' />
-                <img className='px-48 min-h-[200px] lg:min-h-[400px]' src={avatar} alt='' />
-                <img className='px-48 min-h-[200px] lg:min-h-[400px]' src={avatar} alt='' />
-                <img className='px-48 min-h-[200px] lg:min-h-[400px]' src={avatar} alt='' />
+                <img
+                  className='px-48 min-h-[200px] lg:min-h-[400px]'
+                  src='https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/288408744/original/61b4ea49c92dde56a8d9113bf82bf82ded867c0b/create-concept-art-and-character-illustration.png'
+                  alt=''
+                />
+                <img
+                  className='px-48 min-h-[200px] lg:min-h-[400px]'
+                  src='https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/299303050/original/00ed10f685f8c011ba2f2209e717ebd099541647/create-an-amazing-art-from-your-imagination-using-midjourney-ai.png'
+                  alt=''
+                />
+                <img
+                  className='px-48 min-h-[200px] lg:min-h-[400px]'
+                  src='https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/299303050/original/28aa781f25deadbed424251bb60066d8045c1ee1/create-an-amazing-art-from-your-imagination-using-midjourney-ai.png'
+                  alt=''
+                />
+                <img
+                  className='px-48 min-h-[200px] lg:min-h-[400px]'
+                  src='https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/299303050/original/4f23add854c310d98cbdbf7dbfe2dbc2e4789dd7/create-an-amazing-art-from-your-imagination-using-midjourney-ai.png'
+                  alt=''
+                />
               </Slider>
             </div>
             <div className='about-gig py-4'>
@@ -100,7 +116,7 @@ const Gig = () => {
                     <div>USA</div>
                   </div>
                   <div className='response'>
-                    <div className='text-gray-500' >Avg Response time</div>
+                    <div className='text-gray-500'>Avg Response time</div>
                     <div>4 Hour</div>
                   </div>
                   <div className='average py-3'>
@@ -118,135 +134,142 @@ const Gig = () => {
                     <div>1 Day</div>
                   </div>
                 </div>
-              
               </div>
-              
+
               <div className='bottom px-8 py-4'>
-              <hr className='p-2' />
+                <hr className='p-2' />
                 <div>
                   {' '}
                   simply dummy text of the printing and typesetting industry.
                   Lorem Ipsum has been the industry's standard dummy text ever
                   since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it to make a type specimen book. 
+                  and scrambled it to make a type specimen book.
                 </div>
               </div>
             </div>
           </div>
           <div className='review-gig py-6'>
-            <div className='text-black text-2xl font-semibold py-3'>Reviews</div>
-            <div className=" review-body-section flex flex-col my-4">
-            <div className='about-avatar flex'>
-              <div className='avatar'>
-                <img className='w-10 h-10 rounded-full' src={avatar} alt='' />
-              </div>
-              <div className='flex flex-col'>
-                <div className='text-black text-sm font-semibold mx-2'>Jhone Doe</div>
-                <div className='country flex'>
-                  <img className='h-5 w-5 mx-2' src={usa} alt='' />
-                  <div className='text-gray-500 text-sm'>USA</div>
+            <div className='text-black text-2xl font-semibold py-3'>
+              Reviews
+            </div>
+            <div className=' review-body-section flex flex-col my-4'>
+              <div className='about-avatar flex'>
+                <div className='avatar'>
+                  <img className='w-10 h-10 rounded-full' src={avatar} alt='' />
+                </div>
+                <div className='flex flex-col'>
+                  <div className='text-black text-sm font-semibold mx-2'>
+                    Jhone Doe
+                  </div>
+                  <div className='country flex'>
+                    <img className='h-5 w-5 mx-2' src={usa} alt='' />
+                    <div className='text-gray-500 text-sm'>USA</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className='rating flex items-center py-2'>
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />{' '}
-                  <div className='h-5 w-5 text-yellow-400'>5</div>
-                </div>
-            <div className='text-gray-500'>
-              simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book. It has survived not only five
-              centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged
-            </div>
-            <div className='help flex items-center'>
-              <div className='font-semibold'>Helpful?</div>
-              <img className='h-4 w-4 mx-3' src={like} alt='like' />
-              <div className='font-semibold'>Yes</div>
-              <img className='h-4 w-4 mx-3' src={dislike} alt='like' />
-              <div className='font-semibold'>No</div>
-            </div>
+              <div className='rating flex items-center py-2'>
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />{' '}
+                <div className='h-5 w-5 text-yellow-400'>5</div>
+              </div>
+              <div className='text-gray-500'>
+                simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when an unknown printer took a galley of type
+                and scrambled it to make a type specimen book. It has survived
+                not only five centuries, but also the leap into electronic
+                typesetting, remaining essentially unchanged
+              </div>
+              <div className='help flex items-center'>
+                <div className='font-semibold'>Helpful?</div>
+                <img className='h-4 w-4 mx-3' src={like} alt='like' />
+                <div className='font-semibold'>Yes</div>
+                <img className='h-4 w-4 mx-3' src={dislike} alt='like' />
+                <div className='font-semibold'>No</div>
+              </div>
             </div>
             <hr />
-            <div className=" review-body-section flex flex-col my-6">
-            <div className='about-avatar flex'>
-              <div className='avatar'>
-                <img className='w-10 h-10 rounded-full' src={avatar} alt='' />
-              </div>
-              <div className='flex flex-col'>
-                <div className='text-black text-sm font-semibold mx-2'>Jhone Doe</div>
-                <div className='country flex'>
-                  <img className='h-5 w-5 mx-2' src={usa} alt='' />
-                  <div className='text-gray-500 text-sm'>USA</div>
+            <div className=' review-body-section flex flex-col my-6'>
+              <div className='about-avatar flex'>
+                <div className='avatar'>
+                  <img className='w-10 h-10 rounded-full' src={avatar} alt='' />
+                </div>
+                <div className='flex flex-col'>
+                  <div className='text-black text-sm font-semibold mx-2'>
+                    Jhone Doe
+                  </div>
+                  <div className='country flex'>
+                    <img className='h-5 w-5 mx-2' src={usa} alt='' />
+                    <div className='text-gray-500 text-sm'>USA</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className='rating flex items-center py-2'>
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />{' '}
-                  <div className='h-5 w-5 text-yellow-400'>5</div>
-                </div>
-            <div className='text-gray-500'>
-              simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book. It has survived not only five
-              centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged
-            </div>
-            <div className='help flex items-center'>
-              <div className='font-semibold'>Helpful?</div>
-              <img className='h-4 w-4 mx-3' src={like} alt='like' />
-              <div className='font-semibold'>Yes</div>
-              <img className='h-4 w-4 mx-3' src={dislike} alt='like' />
-              <div className='font-semibold'>No</div>
-            </div>
+              <div className='rating flex items-center py-2'>
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />{' '}
+                <div className='h-5 w-5 text-yellow-400'>5</div>
+              </div>
+              <div className='text-gray-500'>
+                simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when an unknown printer took a galley of type
+                and scrambled it to make a type specimen book. It has survived
+                not only five centuries, but also the leap into electronic
+                typesetting, remaining essentially unchanged
+              </div>
+              <div className='help flex items-center'>
+                <div className='font-semibold'>Helpful?</div>
+                <img className='h-4 w-4 mx-3' src={like} alt='like' />
+                <div className='font-semibold'>Yes</div>
+                <img className='h-4 w-4 mx-3' src={dislike} alt='like' />
+                <div className='font-semibold'>No</div>
+              </div>
             </div>
             <hr />
-            <div className=" review-body-section flex flex-col my-6">
-            <div className='about-avatar flex'>
-              <div className='avatar'>
-                <img className='w-10 h-10 rounded-full' src={avatar} alt='' />
-              </div>
-              <div className='flex flex-col'>
-                <div className='text-black text-sm font-semibold mx-2'>Jhone Doe</div>
-                <div className='country flex'>
-                  <img className='h-5 w-5 mx-2' src={usa} alt='' />
-                  <div className='text-gray-500 text-sm'>USA</div>
+            <div className=' review-body-section flex flex-col my-6'>
+              <div className='about-avatar flex'>
+                <div className='avatar'>
+                  <img className='w-10 h-10 rounded-full' src={avatar} alt='' />
+                </div>
+                <div className='flex flex-col'>
+                  <div className='text-black text-sm font-semibold mx-2'>
+                    Jhone Doe
+                  </div>
+                  <div className='country flex'>
+                    <img className='h-5 w-5 mx-2' src={usa} alt='' />
+                    <div className='text-gray-500 text-sm'>USA</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className='rating flex items-center py-2'>
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />
-                  <img className='h-3 w-3 mr-1' src={star} alt='' />{' '}
-                  <div className='h-5 w-5 text-yellow-400'>5</div>
-                </div>
-            <div className='text-gray-500'>
-              simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book. It has survived not only five
-              centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged
-            </div>
-            <div className='help flex items-center'>
-              <div className='font-semibold'>Helpful?</div>
-              <img className='h-4 w-4 mx-3' src={like} alt='like' />
-              <div className='font-semibold'>Yes</div>
-              <img className='h-4 w-4 mx-3' src={dislike} alt='like' />
-              <div className='font-semibold'>No</div>
-            </div>
+              <div className='rating flex items-center py-2'>
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />
+                <img className='h-3 w-3 mr-1' src={star} alt='' />{' '}
+                <div className='h-5 w-5 text-yellow-400'>5</div>
+              </div>
+              <div className='text-gray-500'>
+                simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when an unknown printer took a galley of type
+                and scrambled it to make a type specimen book. It has survived
+                not only five centuries, but also the leap into electronic
+                typesetting, remaining essentially unchanged
+              </div>
+              <div className='help flex items-center'>
+                <div className='font-semibold'>Helpful?</div>
+                <img className='h-4 w-4 mx-3' src={like} alt='like' />
+                <div className='font-semibold'>Yes</div>
+                <img className='h-4 w-4 mx-3' src={dislike} alt='like' />
+                <div className='font-semibold'>No</div>
+              </div>
             </div>
           </div>
         </div>
@@ -256,7 +279,8 @@ const Gig = () => {
             <div className='text-xl '>$59.99</div>
           </div>
           <div className='text-sm text-gray-500 my-6'>
-            I will generate unique and high quality AI generated images based on the description you give me 
+            I will generate unique and high quality AI generated images based on
+            the description you give me
           </div>
           <div className='delivery flex items-center justify-between'>
             <div className='left flex items-center'>
@@ -286,7 +310,9 @@ const Gig = () => {
               <span className='text-gray-500'>Additional design</span>
             </div>
           </div>
-          <button className='rounded-sm h-9 text-white w-full bg-green-500'>Continue</button>
+          <button className='rounded-sm h-9 text-white w-full bg-green-500'>
+            Continue
+          </button>
         </div>
       </div>
     </div>
