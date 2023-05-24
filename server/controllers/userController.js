@@ -1,14 +1,15 @@
 import User from '../mongoDB/models/userSchema.js';
-export const deleteUser = async (req, res) => {
+import { createError } from '../utils/createError.js';
+export const deleteUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
+    if (!user) return next(createError(403, 'user not exist'));
     if (req.userId !== user._id.toString()) {
-      return res.status(403).send('you can delete only you account');
+      return next(createError(403, 'you can only delete your account'));
     }
     await User.findByIdAndDelete(req.params.id);
     res.status(200).send('deleted successfully');
   } catch (error) {
-    console.log(error);
-    res.send(error)
+    next(error);
   }
 };

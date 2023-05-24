@@ -14,7 +14,6 @@ import {
 } from './pages';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
-
 function App() {
   const Layout = () => {
     return (

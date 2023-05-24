@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import logoWhite from '../images/logo4.png';
 import logoBlack from '../images/logo5.png';
 import { Link, useLocation } from 'react-router-dom';
 import { MdSearch } from 'react-icons/md';
 import man from '../images/man.png';
+import { userContext } from '../../contexts/userContext';
+import newRequest from '../utils/newRequest';
 const Header = () => {
+  const { user, setUser } = useContext(userContext);
   const [active, setActive] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
   const { pathname } = useLocation();
+
+  //For changing nav according to scrolling
   useEffect(() => {
     const handleScroll = () => {
       window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -17,12 +22,16 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  const currentUser = {
-    id: 1,
-    userName: 'jhon',
-    isSeller: true,
-  };
 
+  //Handle Logout
+  const handleLogout = async () => {
+    try {
+      await newRequest.post('/auth/logout');
+      setUser('');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div
       className={`header-section bg-slate-900 bg-hero bg-no-repeat bg-cover bg-center bg-fixed scrollbar-hide`}
@@ -40,21 +49,21 @@ const Header = () => {
         <div className='cursor-pointer items-center flex justify-between '>
           <div className='sm:flex hidden sm:ml-6'>Explore</div>
           <div className='sm:flex hidden sm:ml-6'>English</div>
-          {!currentUser?.isSeller && (
+          {!user?.isSeller && (
             <div className='sm:flex hidden sm:ml-6'>Become Seller</div>
           )}
-          {!currentUser?.userName && (
-            <div className='sm:flex hidden sm:ml-6'>Login</div>
+          {!user && <div className='sm:flex hidden sm:ml-6'>Login</div>}
+          {!user && (
+            <Link to='/login'>
+              <button
+                className='flex sm:ml-6  px-5 py-0.5 rounded-md hover:bg-slate-400 hover:text-slate-800 border-2 border-blue-900'
+                type='button'
+              >
+                Join
+              </button>
+            </Link>
           )}
-          {!currentUser?.userName && (
-            <button
-              className='flex sm:ml-6  px-5 py-0.5 rounded-md hover:bg-slate-400 hover:text-slate-800 border-2 border-blue-900'
-              type='button'
-            >
-              Join
-            </button>
-          )}
-          {currentUser && (
+          {user && (
             <div className=''>
               <div
                 onClick={() => {
@@ -64,14 +73,17 @@ const Header = () => {
               >
                 <img
                   className='user h-9 w-9 rounded-full ml-6'
-                  src='https://static.vecteezy.com/system/resources/previews/002/002/257/original/beautiful-woman-avatar-character-icon-free-vector.jpg'
+                  src={
+                    user.img ||
+                    'https://static.vecteezy.com/system/resources/previews/002/002/257/original/beautiful-woman-avatar-character-icon-free-vector.jpg'
+                  }
                   alt='avatar'
                 />
-                <span className='ml-2'>{currentUser.userName}</span>
+                <span className='ml-2'>{user.username}</span>
               </div>
               {userOpen && (
                 <div className=' z-10 options transition-all ease cursor-pointer flex flex-col absolute border-2 rounded-md py-5 px-5 md:px-9 mt-3 bg-slate-300 text-blue-900 justify-center items-center'>
-                  {currentUser.isSeller && (
+                  {user.isSeller && (
                     <>
                       <Link to='/mygigs'>
                         <span
@@ -111,7 +123,7 @@ const Header = () => {
                       Messages
                     </span>
                   </Link>
-                  <Link to='/logout'>
+                  <Link onClick={handleLogout}>
                     <span
                       onClick={() => {
                         setUserOpen(!userOpen);
