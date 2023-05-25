@@ -13,7 +13,9 @@ const Register = () => {
     desc: '',
   });
   const { user, setUser } = useContext(userContext);
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    setUser(newUser);
+  };
   const handleChange = (e) => {
     setNewUser((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -25,6 +27,8 @@ const Register = () => {
     });
   };
   console.log(newUser);
+  console.log(user);
+
   return (
     <div className='min-h-[calc(100vh-140px)] px-16 xl:px-64 py-8'>
       <form
@@ -83,7 +87,7 @@ const Register = () => {
             />
           </div>
           <button
-            className='bg-green-700 hidden md:flex items-center justify-center text-white w-full h-10 rounded-sm'
+            className='bg-indigo-500 hidden md:flex items-center justify-center text-white w-full h-10 rounded-sm'
             type='submit'
           >
             Create
@@ -133,7 +137,7 @@ const Register = () => {
             />
           </div>
           <button
-            className='bg-green-700 md:hidden my-3 text-white w-full h-10 rounded-sm'
+            className='bg-indigo-500 md:hidden my-3 text-white w-full h-10 rounded-sm'
             type='submit'
           >
             Create
