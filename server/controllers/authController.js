@@ -6,11 +6,14 @@ import { createError } from '../utils/createError.js';
 export const register = async (req, res, next) => {
   try {
     const hashPassword = bcrypt.hashSync(req.body.password, 10);
-    const user = new User({
+    const { username, password, email, country } = req.body;
+    if (!password || !email || !country || !username) {
+      return next(createError(400, 'please fill all columns '));
+    }
+    const user = await User.create({
       ...req.body,
       password: hashPassword,
     });
-    await user.save();
     res.status(201).send('user has been registered');
   } catch (error) {
     next(error);
@@ -50,5 +53,5 @@ export const logout = (req, res) => {
       secure: true,
     })
     .status(200)
-    .send('user has been logged out'); 
+    .send('user has been logged out');
 };

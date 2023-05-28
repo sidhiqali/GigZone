@@ -1,5 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { userContext } from '../../contexts/userContext';
+import Upload from '../utils/upload';
+import newRequest from '../utils/newRequest';
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
   const [file, setFile] = useState(null);
   const [newUser, setNewUser] = useState({
@@ -13,7 +16,16 @@ const Register = () => {
     desc: '',
   });
   const { user, setUser } = useContext(userContext);
-  const handleSubmit = () => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = await Upload(file);
+    try {
+      await newRequest.post('/auth/register', { ...newUser, img: url });
+    } catch (error) {
+      console.log(error);
+    }
+    navigate('/');
     setUser(newUser);
   };
   const handleChange = (e) => {
@@ -26,7 +38,6 @@ const Register = () => {
       return { ...prev, isSeller: e.target.checked };
     });
   };
-  console.log(newUser);
   console.log(user);
 
   return (

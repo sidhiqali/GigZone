@@ -3,15 +3,15 @@ import mongoose from 'mongoose';
 const messageSchema = new mongoose.Schema(
   {
     conversationId: {
-      type: 'string',
+      type: String,
       required: true,
     },
     userId: {
-      type: 'string',
+      type: String,
       required: true,
     },
     desc: {
-      type: 'string',
+      type: String,
       required: true,
     },
   },

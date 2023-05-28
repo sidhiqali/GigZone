@@ -2,37 +2,37 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
   username: {
-    type: 'string',
+    type: String,
     required: true,
     unique: true,
   },
   email: {
-    type: 'string',
+    type: String,
     required: true,
     unique: true,
   },
   password: {
-    type: 'string',
+    type: String,
     required: true,
   },
   img: {
-    type: 'string',
+    type: String,
     required: false,
   },
   country: {
-    type: 'string',
+    type: String,
     required: true,
   },
   phone: {
-    type: 'string',
+    type: String,
     required: false,
   },
   desc: {
-    type: 'string',
+    type: String,
     required: false,
   },
   isSeller: {
-    type: 'boolean',
+    type: Boolean,
     default: false,
   },
 },

@@ -3,29 +3,29 @@ import mongoose from 'mongoose';
 const conversationSchema = new mongoose.Schema(
   {
     id: {
-      type: 'string',
+      type: String,
       required: true,
     },
     sellerId: {
-      type: 'string',
+      type: String,
       required: true,
     },
     buyerId: {
-      type: 'string',
+      type: String,
       required: true,
     },
     readBySeller: {
-      type: 'Boolean',
+      type: Boolean,
       required: true,
       default: false,
     },
     readByBuyer: {
-      type: 'Boolean',
+      type: Boolean,
       required: true,
       default: false,
     },
     lastMessage: {
-      type: 'string',
+      type: String,
       required: false,
     },
   },

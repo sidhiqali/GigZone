@@ -3,36 +3,36 @@ import mongoose from 'mongoose';
 const orderSchema = new mongoose.Schema(
   {
     gigId: {
-      type: 'string',
+      type: String,
       required: true,
     },
     img: {
-      type: 'string',
+      type: String,
       required: false,
     },
     title: {
-      type: 'string',
+      type: String,
       required: true,
     },
     price: {
-      type: 'number',
+      type: Number,
       required: true,
     },
     sellerId: {
-      type: 'string',
+      type: String,
       required: true,
     },
     buyerId: {
-      type: 'string',
+      type: String,
       required: true,
     },
     isCompleted: {
-      type: 'Boolean',
+      type: Boolean,
       required: true,
       default: false,
     },
     payment_intent: {
-      type: 'string',
+      type: String,
       required: true,
     },
   },
