@@ -52,11 +52,6 @@ const gigSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    cover: {
-      type: String,
-      required: true,
-      default: 0,
-    },
     features: {
       type: [String],
       required: false,

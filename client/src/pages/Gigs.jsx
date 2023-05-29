@@ -1,9 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import GigCard from '../components/GigCard';
 import down from '../images/down.png';
+import { useQuery } from '@tanstack/react-query';
+import newRequest from '../utils/newRequest';
+import { useLocation } from 'react-router-dom';
+
 const Gigs = () => {
   const [active, setActive] = useState(false);
   const [sort, setSort] = useState('sales');
+  const minRef = useRef();
+  const maxRef = useRef();
+
+  const { search } = useLocation();
+
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ['gigData'],
+    queryFn: () => {
+      return newRequest(
+        `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
+      ).then((res) => res.data);
+    },
+  });
+  console.log(data);
+
+  const handlePrice = (e) => {
+    e.preventDefault();
+    refetch();
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [sort]);
+
   const reSort = (type) => {
     setSort(type);
     setActive(false);
@@ -19,22 +47,27 @@ const Gigs = () => {
           Explore the boundaries of art and technology with GigZone's artists
         </div>
         <div className='budget flex flex-col md:flex-row justify-between md:items-center py-2'>
-          <div className='budget-input flex items-center relative'>
+          <form
+            onSubmit={handlePrice}
+            className='budget-input flex items-center relative'
+          >
             <div className='text-gray-600 '>Budget</div>
             <input
               className='text-gray-600 ml-2 border-gray-300 border-2 px-1 w-20 md:w-36 h-7 rounded-md focus:outline-none focus:border-gray-400'
-              type='text'
+              type='number'
               placeholder='min'
+              ref={minRef}
             />
             <input
               className='text-gray-600 ml-3 border-gray-300 border-2 h-7 px-1 w-20 md:w-36 rounded-md focus:outline-none focus:border-gray-400'
-              type='text'
+              type='number'
               placeholder='max'
+              ref={maxRef}
             />
             <button className=' ml-2 bg-green-500 text-white text-sm p-1 rounded-md w-16 h-7'>
               Apply
             </button>
-          </div>
+          </form>
           <div className='sort flex flex-col relative mt-4'>
             <div className='budget-sort flex '>
               <div className='text-gray-600 '>Sort by</div>
@@ -74,7 +107,13 @@ const Gigs = () => {
           </div>
         </div>
       </div>
-      <GigCard />
+      <div className=' grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2 '>
+        {isLoading
+          ? 'Loading...'
+          : error
+          ? 'something went wrong'
+          : data.map((gig, index) => <GigCard key={index} gig={gig} />)}
+      </div>
     </div>
   );
 };

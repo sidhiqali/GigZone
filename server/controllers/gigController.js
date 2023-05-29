@@ -30,21 +30,28 @@ export const showGig = async (req, res, next) => {
   } catch (error) {}
 };
 export const showGigs = async (req, res, next) => {
-  try {
-    const q = req.query;
-    const filters = {
-      ...(q.userId && { userId: q.userId }),
-      ...(q.category && { category: q.category }),
-      ...((q.min || q.max) && {
-        price: { ...(q.min && { $gt: q.min }), ...(q.max && { $lt: q.max }) },
-      }),
-      ...(q.search && { title: { $regex: q.search, $options: 'i' } }),
-    };
+  const q = req.query;
+  const filters = {
+    ...(q.userId && { userId: q.userId }),
+    ...(q.category && { category: q.category }),
+    ...((q.min || q.max) && {
+      price: {
+        ...(q.min && { $gt: parseFloat(q.min) }),
+        ...(q.max && { $lt: parseFloat(q.max) }),
+      },
+      price: {
+        $gte: parseFloat(q.min) || 0,
+        $lte: parseFloat(q.max) || Infinity,
+      },
+    }),
+    ...(q.search && { title: { $regex: q.search, $options: 'i' } }),
+  };
 
-    const gigs = await Gig.find(filters);
-    if (!gigs) return next(createError(404, 'no gigs found'));
+  try {
+    const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
     res.status(200).send(gigs);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
   }
 };

@@ -13,14 +13,21 @@ import {
   Register,
 } from './pages';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
+const queryClient = new QueryClient();
 function App() {
   const Layout = () => {
     return (
       <div>
-        <Header />
-        <Outlet />
-        <Footer />
+          <QueryClientProvider client={queryClient}>
+          <Header />
+          <Outlet />
+          <Footer />
+        </QueryClientProvider>
       </div>
     );
   };

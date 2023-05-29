@@ -52,9 +52,14 @@ const Header = () => {
           {!user?.isSeller && (
             <div className='sm:flex hidden sm:ml-6'>Become Seller</div>
           )}
-          {!user && <div className='sm:flex hidden sm:ml-6'>Login</div>}
           {!user && (
             <Link to='/login'>
+              {' '}
+              <div className='sm:flex hidden sm:ml-6'>Login</div>
+            </Link>
+          )}
+          {!user && (
+            <Link to='/register'>
               <button
                 className='flex sm:ml-6  px-5 py-0.5 rounded-md hover:bg-slate-400 hover:text-slate-800 border-2 border-blue-900'
                 type='button'

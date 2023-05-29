@@ -10,7 +10,7 @@ import {
 
 router.post('/', verifyToken, createGig);
 router.delete('/:id', verifyToken, deleteGig);
-router.get('/single/:id', verifyToken, showGig);
-router.get('/', verifyToken, showGigs);
+router.get('/single/:id', showGig);
+router.get('/', showGigs);
 
 export default router;
