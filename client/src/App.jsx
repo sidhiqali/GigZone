@@ -11,6 +11,8 @@ import {
   MyGigs,
   Order,
   Register,
+  Pay,
+  Success,
 } from './pages';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import {
@@ -22,8 +24,8 @@ const queryClient = new QueryClient();
 function App() {
   const Layout = () => {
     return (
-      <div>
-          <QueryClientProvider client={queryClient}>
+      <div className=''>
+        <QueryClientProvider client={queryClient}>
           <Header />
           <Outlet />
           <Footer />
@@ -76,6 +78,14 @@ function App() {
         {
           path: '/register',
           element: <Register />,
+        },
+        {
+          path: '/Payment/:id',
+          element: <Pay />,
+        },
+        {
+          path: '/success',
+          element: <Success />,
         },
         {},
       ],

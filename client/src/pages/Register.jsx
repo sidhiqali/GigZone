@@ -25,8 +25,8 @@ const Register = () => {
     } catch (error) {
       console.log(error);
     }
-    navigate('/');
     setUser(newUser);
+    navigate('/');
   };
   const handleChange = (e) => {
     setNewUser((prev) => {

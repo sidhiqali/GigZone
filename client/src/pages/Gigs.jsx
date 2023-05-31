@@ -4,6 +4,7 @@ import down from '../images/down.png';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
 import { useLocation } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const Gigs = () => {
   const [active, setActive] = useState(false);
@@ -108,11 +109,15 @@ const Gigs = () => {
         </div>
       </div>
       <div className=' grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2 '>
-        {isLoading
-          ? 'Loading...'
-          : error
-          ? 'something went wrong'
-          : data.map((gig, index) => <GigCard key={index} gig={gig} />)}
+        {isLoading ? (
+          <div className='flex justify-center items-center'>
+            <Loader />
+          </div>
+        ) : error ? (
+          'something went wrong'
+        ) : (
+          data.map((gig, index) => <GigCard key={index} gig={gig} />)
+        )}
       </div>
     </div>
   );

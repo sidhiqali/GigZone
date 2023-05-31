@@ -8,6 +8,8 @@ import Messages from './Messages';
 import MyGigs from './MyGigs';
 import Order from './Order';
 import Register from './Register';
+import Pay from './Pay';
+import Success from './Success';
 
 export {
   Add,
@@ -20,4 +22,6 @@ export {
   MyGigs,
   Order,
   Register,
+  Pay,
+  Success,
 };

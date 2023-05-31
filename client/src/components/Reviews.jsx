@@ -2,6 +2,7 @@ import React from 'react';
 import Review from './review';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
+import Loader from './Loader';
 
 function Reviews({ gigId }) {
   const queryClient = useQueryClient();
@@ -17,7 +18,7 @@ function Reviews({ gigId }) {
       return newRequest.post('/review', review);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["Reviews"] });
+      queryClient.invalidateQueries({ queryKey: ['Reviews'] });
     },
   });
 
@@ -32,11 +33,15 @@ function Reviews({ gigId }) {
   return (
     <div>
       <div className='text-black text-2xl font-semibold py-3'>Reviews</div>
-      {isLoading
-        ? 'Loading...'
-        : error
-        ? 'something went wrong'
-        : data.map((review) => <Review review={review} key={review.userId} />)}
+      {isLoading ? (
+        <div className='flex justify-center items-center'>
+          <Loader />
+        </div>
+      ) : error ? (
+        'something went wrong'
+      ) : (
+        data.map((review) => <Review review={review} key={review.userId} />)
+      )}
       <form className='pr-10' onSubmit={handleSubmit}>
         <textarea
           className='border-2 w-full border-gray-400 rounded-sm my-4 p-3 text-sm focus:border-gray-500 focus:outline-none '

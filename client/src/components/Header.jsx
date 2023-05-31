@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import logoWhite from '../images/logo4.png';
-import logoBlack from '../images/logo5.png';
-import { Link, useLocation } from 'react-router-dom';
-import { MdSearch } from 'react-icons/md';
-import man from '../images/man.png';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userContext } from '../../contexts/userContext';
 import newRequest from '../utils/newRequest';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Header = () => {
   const { user, setUser } = useContext(userContext);
   const [active, setActive] = useState(false);
@@ -34,16 +32,20 @@ const Header = () => {
   };
   return (
     <div
-      className={`header-section bg-slate-900 bg-hero bg-no-repeat bg-cover bg-center bg-fixed scrollbar-hide`}
+      className={`header-section z-50 sticky top-0 bg-slate-900 bg-hero bg-no-repeat bg-cover bg-center bg-fixed scrollbar-hide`}
     >
       <div
-        className={`nav-section sticky transition-all ease top-0 flex items-center text-yellow-50 justify-between py-4 px-8 sm:px-24   ${
+        className={`nav-section transition-all ease  flex items-center text-yellow-50 justify-between py-4 px-8 sm:px-24   ${
           active || pathname !== '/' ? 'bg-violet-700' : 'bg-transparent'
         }`}
       >
         <div className='flex justify-center items-center w-36'>
           <Link to='/'>
-            <div className='text-2xl font-bold text-slate-300 '>GigZone</div>
+            <div
+              className='text-2xl font-bold text-slate-300 '
+            >
+              GigZone
+            </div>
           </Link>
         </div>
         <div className='cursor-pointer items-center flex justify-between '>
@@ -143,43 +145,10 @@ const Header = () => {
           )}
         </div>
       </div>
-      {pathname === '/' ? (
-        <div className='Feature-section py-14 md:py-36 flex'>
-          <div className='flex flex-col justify-center w-full '>
-            <h1 className='text-white font-bold text-6xl sm:mx-5 mx-5 lg:mx-48 max-w-lg md:max-w-xl p-5'>
-              Find the best freelance service for you
-            </h1>
-            <div className='mx-5 sm:mx-10 lg:mx-48 max-w-2xl flex p-5'>
-              <input
-                placeholder='Search for any service...'
-                type='text'
-                className='w-96 md:w-[450px] h-12 rounded-l-md  border-indigo-700 p-4'
-              />
-              <MdSearch className='w-11 md:w-[75px] h-12 rounded-r-md  bg-indigo-700 text-white p-2' />
-            </div>
-            <div className='popular hidden text-sm md:flex sm:mx-10 mx-5 lg:mx-48 max-w-lg md:max-w-lg justify-between p-5 text-white items-center'>
-              <span className='text-lg'>Popular:</span>
-              <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
-                Web design
-              </button>
-              <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
-                Web design
-              </button>
-              <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
-                Logo Design
-              </button>
-              <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
-                AI services
-              </button>
-            </div>
-          </div>
-          {/* <div className="right md:flex justify-center items-center hidden w-96">
-          <img src={man} alt='logo' />
-        </div> */}
-        </div>
+      {/* {pathname === '/' ? (
       ) : (
         ''
-      )}
+      )} */}
     </div>
   );
 };

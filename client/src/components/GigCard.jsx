@@ -4,6 +4,7 @@ import star from '../images/star.png';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
+import Loader from '../components/Loader';
 const GigCard = ({ gig }) => {
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: [gig._id],
@@ -20,7 +21,9 @@ const GigCard = ({ gig }) => {
         </div>
         <div className='bottom w-full border'>
           {isLoading ? (
-            'Loading...'
+            <div className='flex justify-center items-center'>
+              <Loader />
+            </div>
           ) : error ? (
             'something went wrong'
           ) : (

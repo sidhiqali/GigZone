@@ -20,8 +20,8 @@ const Add = () => {
               className='border-2 border-gray-400 h-10 rounded-sm my-5 px-3 text-sm focus:border-gray-500 focus:outline-none '
               name='category'
             >
-              {Categories.map((category) => (
-                <option className='text-gray-500' value='volvo'>
+              {Categories.map((category,index) => (
+                <option key={index} className='text-gray-500' value='volvo'>
                   {category.title}
                 </option>
               ))}

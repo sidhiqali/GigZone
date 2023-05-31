@@ -6,6 +6,7 @@ import avatar from '../images/bg-header.jpg';
 import starImg from '../images/star.png';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
+import Loader from './Loader';
 function Review({ review }) {
   const { isLoading, error, data } = useQuery({
     queryKey: [review.userId],
@@ -17,7 +18,9 @@ function Review({ review }) {
   return (
     <div className='review-gig py-6'>
       {isLoading ? (
-        'Loading...'
+           <div className='flex justify-center items-center'>
+           <Loader />
+         </div>
       ) : error ? (
         'something went wrong'
       ) : (

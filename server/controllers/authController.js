@@ -14,7 +14,19 @@ export const register = async (req, res, next) => {
       ...req.body,
       password: hashPassword,
     });
-    res.status(201).send('user has been registered');
+    const token = jwt.sign(
+      {
+        id: user._id,
+        isSeller: user.isSeller,
+      },
+      process.env.JWT_KEY
+    );
+
+    const { password: _, ...info } = user._doc;
+    res
+      .cookie('accessToken', token, { httpOnly: true })
+      .status(201)
+      .send({ info, token });
   } catch (error) {
     next(error);
   }

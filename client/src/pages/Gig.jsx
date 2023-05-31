@@ -9,8 +9,9 @@ import greencheck from '../images/greencheck.png';
 import { NextArrow, PrevArrow } from '../components/CardSlider';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Reviews from '../components/reviews';
+import Loader from '../components/Loader';
 const Gig = () => {
   const { id } = useParams();
 
@@ -44,7 +45,9 @@ const Gig = () => {
   return (
     <div className='h-full px-14 xl:px-40 py-8'>
       {isLoading ? (
-        'Loading...'
+        <div className='flex justify-center items-center'>
+          <Loader />
+        </div>
       ) : error ? (
         'something went wrong'
       ) : (
@@ -56,7 +59,9 @@ const Gig = () => {
               </div>
               <div className='text-black text-3xl font-bold'>{data?.title}</div>
               {isLoadingUser ? (
-                'Loading...'
+                <div className='flex justify-center items-center'>
+                  <Loader />
+                </div>
               ) : errorUser ? (
                 'something went wrong'
               ) : (
@@ -115,7 +120,9 @@ const Gig = () => {
               </div>
             </div>
             {isLoadingUser ? (
-              'Loading...'
+              <div className='flex justify-center items-center'>
+                <Loader />
+              </div>
             ) : errorUser ? (
               'something went wrong'
             ) : (
@@ -225,9 +232,11 @@ const Gig = () => {
                 </div>
               ))}
             </div>
-            <button className='rounded-sm h-9 text-white w-full bg-green-500'>
-              Continue
-            </button>
+            <Link to={`/payment/${id}`}>
+              <button className='rounded-sm h-9 text-white w-full bg-green-500'>
+                Continue
+              </button>
+            </Link>
           </div>
         </div>
       )}
