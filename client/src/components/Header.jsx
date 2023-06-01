@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { userContext } from '../../contexts/userContext';
+import { userContext } from '../contexts/userContext';
 import newRequest from '../utils/newRequest';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,15 +41,13 @@ const Header = () => {
       >
         <div className='flex justify-center items-center w-36'>
           <Link to='/'>
-            <div
-              className='text-2xl font-bold text-slate-300 '
-            >
-              GigZone
-            </div>
+            <div className='text-2xl font-bold text-slate-300 '>GigZone</div>
           </Link>
         </div>
         <div className='cursor-pointer items-center flex justify-between '>
-          <div className='sm:flex hidden sm:ml-6'>Explore</div>
+          <Link to='/gigs'>
+            <div className='sm:flex hidden sm:ml-6'>Explore</div>
+          </Link>
           <div className='sm:flex hidden sm:ml-6'>English</div>
           {!user?.isSeller && (
             <div className='sm:flex hidden sm:ml-6'>Become Seller</div>

@@ -31,21 +31,25 @@ export const showGig = async (req, res, next) => {
 };
 export const showGigs = async (req, res, next) => {
   const q = req.query;
-  const filters = {
-    ...(q.userId && { userId: q.userId }),
-    ...(q.category && { category: q.category }),
-    ...((q.min || q.max) && {
-      price: {
-        ...(q.min && { $gt: parseFloat(q.min) }),
-        ...(q.max && { $lt: parseFloat(q.max) }),
-      },
-      price: {
-        $gte: parseFloat(q.min) || 0,
-        $lte: parseFloat(q.max) || Infinity,
-      },
-    }),
-    ...(q.search && { title: { $regex: q.search, $options: 'i' } }),
-  };
+  let filters = {};
+
+  if (Object.keys(q).length > 0) {
+    filters = {
+      ...(q.userId && { userId: q.userId }),
+      ...(q.category && { category: q.category }),
+      ...(q.min || q.max
+        ? {
+            price: {
+              ...(q.min && { $gte: parseFloat(q.min) }),
+              ...(q.max && { $lte: parseFloat(q.max) }),
+            },
+          }
+        : {}),
+      ...(q.search && {
+        title: { $regex: escapeRegExp(q.search), $options: 'i' },
+      }),
+    };
+  }
 
   try {
     const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
@@ -55,3 +59,15 @@ export const showGigs = async (req, res, next) => {
     res.status(500).send('Internal Server Error');
   }
 };
+
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// export const showAllGigs = async (req, res, next) => {
+//   try {
+//     const gigs = await Gig.find();
+//     if (!gigs) return next(createError(404, 'gigs not found'));
+//     res.status(200).send(gigs);
+//   } catch (error) {}
+// };

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import messageIcon from '../images/message.png';
-import { userContext } from '../../contexts/userContext';
+import { userContext } from '../contexts/userContext';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
 import Loader from '../components/Loader';

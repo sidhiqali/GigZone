@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { userContext } from '../../contexts/userContext';
+import { userContext } from '../contexts/userContext';
 import Upload from '../utils/upload';
 import newRequest from '../utils/newRequest';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { toastify } from '../utils/toastify';
 const Register = () => {
   const [file, setFile] = useState(null);
   const [newUser, setNewUser] = useState({
@@ -21,12 +23,16 @@ const Register = () => {
     e.preventDefault();
     const url = await Upload(file);
     try {
-      await newRequest.post('/auth/register', { ...newUser, img: url });
+      const result = await newRequest.post('/auth/register', {
+        ...newUser,
+        img: url,
+      });
+      setUser(result?.data?.info ); // Assuming the response data contains the user information
+      navigate('/');
+      toast.success('successfully registered', { ...toastify });
     } catch (error) {
-      console.log(error);
+      toast.error(error.response?.data, { ...toastify }); // Assuming the error object has a "message" property
     }
-    setUser(newUser);
-    navigate('/');
   };
   const handleChange = (e) => {
     setNewUser((prev) => {

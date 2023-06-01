@@ -1,18 +1,31 @@
 import React, { useContext } from 'react';
 import deleteIcon from '../images/delete.png';
-import { Link } from 'react-router-dom';
-import { userContext } from '../../contexts/userContext';
+import { Link, useLocation } from 'react-router-dom';
+import { userContext } from '../contexts/userContext';
 import newRequest from '../utils/newRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import Loader from '../components/Loader';
+import { toast } from 'react-toastify';
+import { toastify } from '../utils/toastify';
 const MyGigs = () => {
-  const user = useContext(userContext);
+  const { search } = useLocation();
+  const { user } = useContext(userContext);
   const queryClient = useQueryClient();
   const { isLoading, error, data } = useQuery({
-    queryKey: [user._id],
+    queryKey: ['gigData'],
     queryFn: () => {
-      return newRequest(`gigs?=userId=${user._id}`).then((res) => res.data);
+      const queryParams = new URLSearchParams(search);
+      const userID = user?._id; // Check if user._id is defined
+      if (!userID) {
+        // Handle the case where user._id is not defined
+        return Promise.reject(new Error('User ID is missing'));
+      }
+      queryParams.set('userId', userID);
+      const queryString = queryParams.toString();
+      return newRequest(`/gigs?${queryString}`).then((res) => res.data);
     },
   });
+
   console.log(data);
   console.log(user);
   const mutation = useMutation({
@@ -20,11 +33,12 @@ const MyGigs = () => {
       return newRequest.delete(`gigs/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [user._id] });
+      queryClient.invalidateQueries({ queryKey: ['gigData'] });
     },
   });
   const handleDelete = (id) => {
     mutation.mutate(id);
+    toast.success('successfully deleted', { ...toastify });
   };
   return (
     <div className='min-h-[calc(100vh-140px)] px-14 xl:px-40 py-8'>

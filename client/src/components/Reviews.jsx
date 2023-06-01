@@ -12,7 +12,7 @@ function Reviews({ gigId }) {
       return newRequest(`review/${gigId}`).then((res) => res.data);
     },
   });
-
+ 
   const mutation = useMutation({
     mutationFn: (review) => {
       return newRequest.post('/review', review);

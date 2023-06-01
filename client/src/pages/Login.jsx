@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import newRequest from '../utils/newRequest';
 import { useNavigate } from 'react-router-dom';
-import { userContext } from '../../contexts/userContext';
-
+import { userContext } from '../contexts/userContext';
+import { toast } from 'react-toastify';
+import { toastify } from '../utils/toastify';
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -21,16 +22,17 @@ const Login = () => {
       if (result) {
         setUser(result.data);
         console.log(result.data);
+        toast.success('login successfully',{...toastify})
         navigate('/');
       } else {
         // Handle case where result is undefined or doesn't have the expected data
         setError('Invalid response');
-        alert('Invalid response');
+        toast.error('Invalid response',{...toastify});
       }
     } catch (error) {
       console.log(error);
       setError(error.response?.data || 'An error occurred');
-      alert(error.response?.data || 'An error occurred');
+      toast.error(error.response?.data ,{...toastify}|| 'An error occurred');
     }
   };
 

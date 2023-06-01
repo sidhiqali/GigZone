@@ -3,8 +3,9 @@ import GigCard from '../components/GigCard';
 import down from '../images/down.png';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
+import qs from 'qs';
 
 const Gigs = () => {
   const [active, setActive] = useState(false);
@@ -17,13 +18,21 @@ const Gigs = () => {
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ['gigData'],
     queryFn: () => {
-      return newRequest(
-        `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
-      ).then((res) => res.data);
+      const searchParams = new URLSearchParams(search);
+      const category = searchParams.get('category');
+  
+      const queryParams = qs.stringify({
+        category,
+        min: minRef.current.value || '',
+        max: maxRef.current.value || '',
+        sort: sort,
+      });
+  
+      return newRequest(`/gigs?${queryParams}`).then((res) => res.data);
     },
   });
   console.log(data);
-
+console.log(search);
   const handlePrice = (e) => {
     e.preventDefault();
     refetch();

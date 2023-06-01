@@ -52,6 +52,11 @@ const gigSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    revisionTime: {
+      type: String,
+      required: true,
+      default: 0,
+    },
     features: {
       type: [String],
       required: false,

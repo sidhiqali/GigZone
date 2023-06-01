@@ -10,19 +10,32 @@ export const register = async (req, res, next) => {
     if (!password || !email || !country || !username) {
       return next(createError(400, 'please fill all columns '));
     }
-    const user = await User.create({
+    const user = await User.findOne({
+      $or: [{ username }, { email }],
+    });
+
+    if (user) {
+      if (user.username === username) {
+        return next(createError(400, 'Username already exists'));
+      }
+      if (user.email === email) {
+        return next(createError(400, 'Email already exists'));
+      }
+    }
+
+    const newUser = await User.create({
       ...req.body,
       password: hashPassword,
     });
     const token = jwt.sign(
       {
-        id: user._id,
-        isSeller: user.isSeller,
+        id: newUser._id,
+        isSeller: newUser.isSeller,
       },
       process.env.JWT_KEY
     );
 
-    const { password: _, ...info } = user._doc;
+    const { password: _, ...info } = newUser._doc;
     res
       .cookie('accessToken', token, { httpOnly: true })
       .status(201)

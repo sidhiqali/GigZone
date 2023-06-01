@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CategoryCard = ({ card }) => {
   return (
-    <Link to='/gigs?category=designing'>
+    <Link to='/gigs'>
       <div className='w-full sm:w-3/4 md:w-10/12 lg:w-3/4 xl:w-10/12 p-2'>
         <div className=' shadow-slate-500 shadow-xl  w-full h-96 bg-gray-800 rounded-md overflow-hidden relative'>
           <img className='w-full h-full object-cover' src={card.img} alt='' />
