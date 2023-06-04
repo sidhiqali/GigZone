@@ -5,11 +5,24 @@ import jwt from 'jsonwebtoken';
 import { createError } from '../utils/createError.js';
 export const register = async (req, res, next) => {
   try {
-    const hashPassword = bcrypt.hashSync(req.body.password, 10);
     const { username, password, email, country } = req.body;
     if (!password || !email || !country || !username) {
-      return next(createError(400, 'please fill all columns '));
+      return next(createError(400, 'Please fill all columns'));
     }
+
+    // Password validation
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return next(
+        createError(
+          400,
+          'Password must be at least 8 characters long and include at least one letter and one number'
+        )
+      );
+    }
+
+    const hashPassword = bcrypt.hashSync(password, 10);
+
     const user = await User.findOne({
       $or: [{ username }, { email }],
     });

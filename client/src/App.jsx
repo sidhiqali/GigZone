@@ -1,26 +1,24 @@
-import { useState } from 'react';
-import { Header, Footer } from './components';
-import {
-  Gigs,
-  Home,
-  Add,
-  Gig,
-  Login,
-  Message,
-  Messages,
-  MyGigs,
-  Order,
-  Register,
-  Pay,
-  Success,
-} from './pages';
+import { lazy, Suspense } from 'react';
+import { Header, Footer, Loader } from './components';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// Lazy load the page components
+const Home = lazy(() => import('./pages/Home'));
+const Gigs = lazy(() => import('./pages/Gigs'));
+const Add = lazy(() => import('./pages/Add'));
+const Gig = lazy(() => import('./pages/Gig'));
+const Login = lazy(() => import('./pages/Login'));
+const Message = lazy(() => import('./pages/Message'));
+const Messages = lazy(() => import('./pages/Messages'));
+const MyGigs = lazy(() => import('./pages/MyGigs'));
+const Order = lazy(() => import('./pages/Order'));
+const Register = lazy(() => import('./pages/Register'));
+const Pay = lazy(() => import('./pages/Pay'));
+const Success = lazy(() => import('./pages/Success'));
+
 const queryClient = new QueryClient();
+
 function App() {
   const Layout = () => {
     return (
@@ -34,63 +32,131 @@ function App() {
     );
   };
 
+  const FallbackLoading = () => {
+    return (
+      <div className='flex justify-center items-center'>
+        <Loader />
+      </div>
+    );
+  };
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Layout />,
+      element: (
+        <Suspense fallback={<FallbackLoading />}>
+          <Layout />
+        </Suspense>
+      ),
       children: [
         {
           path: '/',
-          element: <Home />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Home />
+            </Suspense>
+          ),
         },
         {
           path: '/gigs',
-          element: <Gigs />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Gigs />
+            </Suspense>
+          ),
         },
         {
           path: '/add',
-          element: <Add />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Add />
+            </Suspense>
+          ),
+        },
+        {
+          path: '/edit/:id',
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Add />
+            </Suspense>
+          ),
         },
         {
           path: '/gig/:id',
-          element: <Gig />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Gig />
+            </Suspense>
+          ),
         },
         {
           path: '/login',
-          element: <Login />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Login />
+            </Suspense>
+          ),
         },
         {
           path: '/message/:id',
-          element: <Message />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Message />
+            </Suspense>
+          ),
         },
         {
           path: '/messages',
-          element: <Messages />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Messages />
+            </Suspense>
+          ),
         },
         {
           path: '/mygigs',
-          element: <MyGigs />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <MyGigs />
+            </Suspense>
+          ),
         },
         {
           path: '/order',
-          element: <Order />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Order />
+            </Suspense>
+          ),
         },
         {
           path: '/register',
-          element: <Register />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Register />
+            </Suspense>
+          ),
         },
         {
           path: '/Payment/:id',
-          element: <Pay />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Pay />
+            </Suspense>
+          ),
         },
         {
           path: '/success',
-          element: <Success />,
+          element: (
+            <Suspense fallback={<FallbackLoading />}>
+              <Success />
+            </Suspense>
+          ),
         },
-        {},
       ],
     },
   ]);
+
   return (
     <div>
       <RouterProvider router={router} />

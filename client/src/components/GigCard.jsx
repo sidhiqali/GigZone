@@ -1,10 +1,10 @@
 import React from 'react';
-import heart from '../images/heart.png';
-import star from '../images/star.png';
+import { heart, starImg } from '../images';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
-import Loader from '../components/Loader';
+import { Loader } from '../components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 const GigCard = ({ gig }) => {
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: [gig._id],
@@ -17,7 +17,11 @@ const GigCard = ({ gig }) => {
     <Link to={`/gig/${gig._id}`} key={gig._id}>
       <div className='hover:shadow-md hover:shadow-slate-400 cursor-pointer container flex flex-col w-full sm:w-3/4 md:w-10/12 lg:w-3/4 xl:w-[280px]'>
         <div className='top w-full '>
-          <img className=' w-full h-40 rounded-sm' src={gig.cover} alt='' />
+          <LazyLoadImage
+            className='w-full h-40 rounded-sm'
+            src={gig.cover}
+            alt=''
+          />
         </div>
         <div className='bottom w-full border'>
           {isLoading ? (
@@ -39,9 +43,9 @@ const GigCard = ({ gig }) => {
               <div className='name'>{data.username}</div>
             </div>
           )}
-          <div className='desc text-sm px-3'>{gig.desc}</div>
+          <div className='desc text-sm px-3'>{gig.desc.substring(0, 100)}</div>
           <div className='rating flex w-3 h-3 m-2 items-center '>
-            <img className='mr-2 ' src={star} alt='' />
+            <img className='mr-2 ' src={starImg} alt='' />
             <div>
               {!isNaN(gig.totalStars / gig.starNumber) &&
                 Math.round(gig.totalStars / gig.starNumber)}

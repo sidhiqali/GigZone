@@ -4,6 +4,7 @@ import { userContext } from '../contexts/userContext';
 import newRequest from '../utils/newRequest';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { toastify } from '../utils/toastify';
 const Header = () => {
   const { user, setUser } = useContext(userContext);
   const [active, setActive] = useState(false);
@@ -26,8 +27,9 @@ const Header = () => {
     try {
       await newRequest.post('/auth/logout');
       setUser('');
+      toast.success('Logged out')
     } catch (error) {
-      console.log(error.message);
+      toast.error(error?.response?.data);
     }
   };
   return (

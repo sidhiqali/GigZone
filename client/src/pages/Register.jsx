@@ -31,7 +31,7 @@ const Register = () => {
       navigate('/');
       toast.success('successfully registered', { ...toastify });
     } catch (error) {
-      toast.error(error.response?.data, { ...toastify }); // Assuming the error object has a "message" property
+      toast.error(error?.response?.data, { ...toastify }); // Assuming the error object has a "message" property
     }
   };
   const handleChange = (e) => {

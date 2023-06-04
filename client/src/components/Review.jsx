@@ -1,9 +1,5 @@
 import React from 'react';
-import usa from '../images/usa.png';
-import like from '../images/like.png';
-import dislike from '../images/dislike.png';
-import avatar from '../images/bg-header.jpg';
-import starImg from '../images/star.png';
+import { like, dislike, starImg } from '../images';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
 import Loader from './Loader';
@@ -18,9 +14,9 @@ function Review({ review }) {
   return (
     <div className='review-gig py-6'>
       {isLoading ? (
-           <div className='flex justify-center items-center'>
-           <Loader />
-         </div>
+        <div className='flex justify-center items-center'>
+          <Loader />
+        </div>
       ) : error ? (
         'something went wrong'
       ) : (
@@ -34,7 +30,6 @@ function Review({ review }) {
                 {data?.username}
               </div>
               <div className='country flex'>
-                <img className='h-5 w-5 mx-2' src={usa} alt='' />
                 <div className='text-gray-500 text-sm'>{data.country}</div>
               </div>
             </div>

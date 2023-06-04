@@ -9,13 +9,14 @@ import {
   programming,
   video,
   writing,
+  dog,
 } from '../images';
 export const cards = [
   {
     id: 1,
     title: 'AI Artists',
     desc: 'Add talent to AI',
-    img: 'https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_2.0/v1/attachments/generic_asset/asset/f27bec553efc12cc60baed89b8f2223e-1674661140708/ai-artists-2x.png',
+    img: dog,
   },
   {
     id: 2,
@@ -199,7 +200,7 @@ export const Categories = [
   {
     id: 1,
     img: audio,
-    title: 'Music & Audio',
+    title: 'Music Audio',
   },
   {
     id: 2,
@@ -239,7 +240,7 @@ export const Categories = [
   {
     id: 9,
     img: video,
-    title: 'Video & Animation',
+    title: 'Video Animation',
   },
   {
     id: 10,

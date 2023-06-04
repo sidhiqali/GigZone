@@ -1,17 +1,11 @@
 import React from 'react';
-
-import star from '../images/star.png';
+import { starImg, clock, recycle, greenCheck } from '../images';
 import Slider from 'react-slick';
-
-import clock from '../images/clock.png';
-import recycle from '../images/recycle.png';
-import greencheck from '../images/greencheck.png';
 import { NextArrow, PrevArrow } from '../components/CardSlider';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
 import { Link, useParams } from 'react-router-dom';
-import Reviews from '../components/reviews';
-import Loader from '../components/Loader';
+import { Reviews, Loader } from '../components';
 const Gig = () => {
   const { id } = useParams();
 
@@ -43,7 +37,7 @@ const Gig = () => {
     slidesToScroll: 1,
   };
   return (
-    <div className='h-full px-14 xl:px-40 py-8'>
+    <div className='min-h-[calc(100vh-140px)] h-full px-14 xl:px-40 py-8'>
       {isLoading ? (
         <div className='flex justify-center items-center'>
           <Loader />
@@ -85,7 +79,7 @@ const Gig = () => {
                         .map((item, i) => (
                           <img
                             className='h-3 w-3 mr-1'
-                            src={star}
+                            src={starImg}
                             alt='star'
                             key={i}
                           />
@@ -107,7 +101,7 @@ const Gig = () => {
                   {data?.images.map((image) => (
                     <img
                       key={image}
-                      className='px-48 min-h-[200px] lg:min-h-[400px]'
+                      className='pr-20 pl-8 min-h-[200px] lg:min-h-[400px]'
                       src={image}
                       alt='image'
                     />
@@ -152,7 +146,7 @@ const Gig = () => {
                           .map((item, i) => (
                             <img
                               className='h-3 w-3 mr-1'
-                              src={star}
+                              src={starImg}
                               alt='star'
                               key={i}
                             />
@@ -220,14 +214,14 @@ const Gig = () => {
               <div className='right flex items-center'>
                 <img className='h-4 w-4 mx-2' src={recycle} alt='' />
                 <div className='text-gray-500 text-sm'>
-                  {data.revision} Revisions
+                  {data.revisionTime} Revisions
                 </div>
               </div>
             </div>
             <div className='specs flex flex-col py-4 '>
               {data.features.map((feature) => (
                 <div className='spec flex items-center' key={feature}>
-                  <img className='h-4 w-4 mx-2' src={greencheck} alt='' />
+                  <img className='h-4 w-4 mx-2' src={greenCheck} alt='' />
                   <span className='text-gray-500'>{feature}</span>
                 </div>
               ))}

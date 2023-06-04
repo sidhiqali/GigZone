@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import GigCard from '../components/GigCard';
-import down from '../images/down.png';
+import { down } from '../images';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
-import { useLocation, useParams } from 'react-router-dom';
-import Loader from '../components/Loader';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Loader, GigCard } from '../components';
 import qs from 'qs';
 
 const Gigs = () => {
@@ -12,7 +11,7 @@ const Gigs = () => {
   const [sort, setSort] = useState('sales');
   const minRef = useRef();
   const maxRef = useRef();
-
+  const navigate = useNavigate();
   const { search } = useLocation();
 
   const { isLoading, error, data, refetch } = useQuery({
@@ -20,19 +19,20 @@ const Gigs = () => {
     queryFn: () => {
       const searchParams = new URLSearchParams(search);
       const category = searchParams.get('category');
-  
+      const searchGig = searchParams.get('searchGig');
       const queryParams = qs.stringify({
+        searchGig,
         category,
         min: minRef.current.value || '',
         max: maxRef.current.value || '',
         sort: sort,
       });
-  
+
       return newRequest(`/gigs?${queryParams}`).then((res) => res.data);
     },
   });
   console.log(data);
-console.log(search);
+  console.log(search);
   const handlePrice = (e) => {
     e.preventDefault();
     refetch();
@@ -47,7 +47,7 @@ console.log(search);
     setActive(false);
   };
   return (
-    <div className='h-full px-14 xl:px-40 py-8'>
+    <div className='min-h-[calc(100vh-140px)] h-full px-14 xl:px-40 py-8'>
       <div className='container py-3'>
         <div className='category text-gray-600 text-sm py-1'>
           Graphic design{' '}
@@ -117,17 +117,59 @@ console.log(search);
           </div>
         </div>
       </div>
-      <div className=' grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2 '>
-        {isLoading ? (
-          <div className='flex justify-center items-center'>
-            <Loader />
+
+      {isLoading ? (
+        <div className='flex justify-center items-center'>
+          <Loader />
+        </div>
+      ) : error ? (
+        'something went wrong'
+      ) : data.length === 0 ? (
+        <section className='flex items-center grid-cols-1 h-full sm:p-16 text-gray-600'>
+          <div className='container flex flex-col items-center justify-center px-5 mx-auto my-3 space-y-8 text-center sm:max-w-md'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 512 512'
+              className='w-40 h-40 dark:text-gray-600'
+            >
+              <path
+                fill='currentColor'
+                d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z'
+              ></path>
+              <rect
+                width='176'
+                height='32'
+                x='168'
+                y='320'
+                fill='currentColor'
+              ></rect>
+              <polygon
+                fill='currentColor'
+                points='210.63 228.042 186.588 206.671 207.958 182.63 184.042 161.37 162.671 185.412 138.63 164.042 117.37 187.958 141.412 209.329 120.042 233.37 143.958 254.63 165.329 230.588 189.37 251.958 210.63 228.042'
+              ></polygon>
+              <polygon
+                fill='currentColor'
+                points='383.958 182.63 360.042 161.37 338.671 185.412 314.63 164.042 293.37 187.958 317.412 209.329 296.042 233.37 319.958 254.63 341.329 230.588 365.37 251.958 386.63 228.042 362.588 206.671 383.958 182.63'
+              ></polygon>
+            </svg>
+            <p className='text-3xl'>No gigs available for this Category</p>
+            <a
+              rel='noopener noreferrer'
+              href=''
+              className='px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900'
+              onClick={(e) => navigate('/gigs')}
+            >
+              Show all gigs
+            </a>
           </div>
-        ) : error ? (
-          'something went wrong'
-        ) : (
-          data.map((gig, index) => <GigCard key={index} gig={gig} />)
-        )}
-      </div>
+        </section>
+      ) : (
+        <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2'>
+          {data.map((gig, index) => (
+            <GigCard key={index} gig={gig} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

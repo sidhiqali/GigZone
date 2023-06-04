@@ -1,6 +1,7 @@
 import React from 'react';
 import newRequest from '../utils/newRequest';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Success = () => {
   const { search } = useLocation();
@@ -13,11 +14,11 @@ const Success = () => {
       await newRequest.put('/order', { payment_intent });
       navigate('/order');
     } catch (error) {
-      console.log(error);
+      toast.error(error?.response?.data)
     }
   };
   return (
-    <div className='bg-gray-100 h-screen'>
+    <div className='bg-gray-100 h-screen min-h-[calc(100vh-140px)]'>
       <div className='bg-white p-6  md:mx-auto'>
         <svg
           viewBox='0 0 24 24'

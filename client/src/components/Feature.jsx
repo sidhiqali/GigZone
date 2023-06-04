@@ -8,7 +8,7 @@ const Feature = () => {
   const [input, setInput] = useState('');
   const handleSearch = () => {
     if (input) {
-      navigate(`/gigs?search=${input}`);
+      navigate(`/gigs?searchGig=${input}`);
     }
   };
   return (

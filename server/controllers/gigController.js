@@ -36,6 +36,7 @@ export const showGigs = async (req, res, next) => {
   if (Object.keys(q).length > 0) {
     filters = {
       ...(q.userId && { userId: q.userId }),
+      ...(q.searchGig && { title: q.searchGig }),
       ...(q.category && { category: q.category }),
       ...(q.min || q.max
         ? {
@@ -63,11 +64,27 @@ export const showGigs = async (req, res, next) => {
 function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
+export const updateGig = async (req, res, next) => {
+  try {
+    const gigId = req.params.id;
+    const updatedFields = req.body;
 
-// export const showAllGigs = async (req, res, next) => {
-//   try {
-//     const gigs = await Gig.find();
-//     if (!gigs) return next(createError(404, 'gigs not found'));
-//     res.status(200).send(gigs);
-//   } catch (error) {}
-// };
+    const gig = await Gig.findById(gigId);
+    if (!gig) {
+      return next(createError(404, 'Gig not found'));
+    }
+    if (req.userId.toString() !== gig.userId.toString()) {
+      return next(
+        createError(403, 'Only the user who created the gig can update it')
+      );
+    }
+
+    Object.assign(gig, updatedFields);
+
+    const updatedGig = await gig.save();
+    res.status(200).send(updatedGig);
+  } catch (error) {
+    console.error('Error updating gig:', error);
+    next(error);
+  }
+};

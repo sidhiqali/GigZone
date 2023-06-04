@@ -32,7 +32,7 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       setError(error.response?.data || 'An error occurred');
-      toast.error(error.response?.data ,{...toastify}|| 'An error occurred');
+      toast.error(error?.response?.data ,{...toastify}|| 'An error occurred');
     }
   };
 
