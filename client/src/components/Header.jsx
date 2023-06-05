@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userContext } from '../contexts/userContext';
 import newRequest from '../utils/newRequest';
@@ -10,7 +10,7 @@ const Header = () => {
   const [active, setActive] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
   const { pathname } = useLocation();
-
+  const ref = useRef(null);
   //For changing nav according to scrolling
   useEffect(() => {
     const handleScroll = () => {
@@ -27,14 +27,26 @@ const Header = () => {
     try {
       await newRequest.post('/auth/logout');
       setUser('');
-      toast.success('Logged out')
+      toast.success('Logged out');
     } catch (error) {
       toast.error(error?.response?.data);
     }
   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setUserOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   return (
     <div
-      className={`header-section z-50 sticky top-0 bg-slate-900 bg-hero bg-no-repeat bg-cover bg-center bg-fixed scrollbar-hide`}
+      className={`header-section z-50 sticky top-0 bg-slate-900 bg-hero bg-no-repeat bg-cover bg-center bg-fixed`}
     >
       <div
         className={`nav-section transition-all ease  flex items-center text-yellow-50 justify-between py-4 px-8 sm:px-24   ${
@@ -71,7 +83,7 @@ const Header = () => {
             </Link>
           )}
           {user && (
-            <div className=''>
+            <div className='' ref={ref}>
               <div
                 onClick={() => {
                   setUserOpen(!userOpen);
