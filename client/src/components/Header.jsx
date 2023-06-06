@@ -46,7 +46,7 @@ const Header = () => {
   }, []);
   return (
     <div
-      className={`header-section z-50 sticky top-0 bg-slate-900 bg-hero bg-no-repeat bg-cover bg-center bg-fixed`}
+      className={`header-section z-50 sticky top-0 bg-hero bg-no-repeat bg-cover bg-center bg-fixed`}
     >
       <div
         className={`nav-section transition-all ease  flex items-center text-yellow-50 justify-between py-4 px-8 sm:px-24   ${
