@@ -23,6 +23,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: 'https://gigzone.netlify.app', credentials: true }));
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://gigzone.netlify.app');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+app.set('trust proxy', 1);
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/conversations', conversationRoute);
@@ -34,9 +40,6 @@ app.use('/api/review', reviewRoute);
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || 'something went wrong';
-  res.set('Access-Control-Allow-Origin', 'https://gigzone.netlify.app');
-  res.set('Access-Control-Allow-Credentials', 'true');
-
   res.status(errorStatus).send(errorMessage);
 });
 
