@@ -6,7 +6,7 @@ import Loader from '../components/Loader';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
 import qs from 'qs';
-const TrustLogos = lazy(() => import('../components/trustLogos'));
+const TrustLogos = lazy(() => import('../components/TrustLogos'));
 const CardSlider = lazy(() => import('../components/CardSlider'));
 const CategoryCard = lazy(() => import('../components/CategoryCard'));
 const CategorySection = lazy(() => import('../components/CategorySection'));
