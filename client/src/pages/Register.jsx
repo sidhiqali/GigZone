@@ -161,7 +161,7 @@ const Register = () => {
           </button>
           <div className=' mt-2 text-sm flex items-center'>
             <div className='text-gray-500 text-lg'>Already a member ?</div>
-            <Link to='/register'>
+            <Link to='/login'>
               <div className='font-semibold text-indigo-600 hover:text-indigo-500 mx-2 text-lg'>
                 Login
               </div>

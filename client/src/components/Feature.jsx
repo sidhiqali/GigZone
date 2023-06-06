@@ -25,7 +25,7 @@ const Feature = () => {
           <input
             placeholder='Search for any service...'
             type='text'
-            className='w-96 md:w-[450px] h-12 rounded-l-md  border-indigo-700 p-4'
+            className='w-96 md:w-[450px] h-12 md:rounded-l-md rounded-l-sm  border-indigo-700 p-4'
             onChange={(e) => setInput(e.target.value)}
           />
           <MdSearch
