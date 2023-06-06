@@ -8,7 +8,7 @@ import Header from './Header';
 import Loader from './Loader';
 import ProjectCard from './ProjectCard';
 import Reviews from './Reviews';
-import Review from './review';
+import Review from './Review';
 import TrustLogos from './trustLogos';
 
 export {
