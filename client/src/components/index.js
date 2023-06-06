@@ -9,7 +9,7 @@ import Loader from './Loader';
 import ProjectCard from './ProjectCard';
 import Reviews from './Reviews';
 import Review from './Review';
-import TrustLogos from './trustLogos';
+import TrustLogos from './TrustLogos';
 
 export {
   Header,
