@@ -21,10 +21,13 @@ const server = http.createServer(app);
 const io = new Server(server);
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: 'https://gigzone.netlify.app', credentials: true }));
+app.use(cors({ origin: 'https://gigzone.up.railway.app/', credentials: true }));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://gigzone.netlify.app');
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'https://gigzone.up.railway.app/'
+  );
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
@@ -56,7 +59,7 @@ const startServer = async () => {
     connectDB(process.env.MONGODB_URL);
     app.listen(port, () => {
       console.log(
-        `server connected at port ${port} successfully. https://gigzone.netlify.app/`
+        `server connected at port ${port} successfully. https://gigzone.up.railway.app/`
       );
     });
   } catch (error) {
