@@ -51,9 +51,10 @@ export const register = async (req, res, next) => {
     const { password: _, ...info } = newUser._doc;
     res
       .cookie('accessToken', token, {
-        httpOnly: true,
-        secure: true,
         sameSite: 'none',
+        secure: true,
+        domain: 'gigzone.netlify.app',
+        httpOnly: true,
       })
       .status(201)
       .send({ info, token });
@@ -82,9 +83,10 @@ export const login = async (req, res, next) => {
     const { password, ...info } = user?._doc;
     res
       .cookie('accessToken', token, {
-        httpOnly: true,
-        secure: true,
         sameSite: 'none',
+        secure: true,
+        domain: 'gigzone.netlify.app',
+        httpOnly: true,
       })
       .status(200)
       .send(info);
