@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { userContext } from '../contexts/userContext';
 import Upload from '../utils/upload';
 import newRequest from '../utils/newRequest';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { toastify } from '../utils/toastify';
 const Register = () => {
@@ -27,7 +27,7 @@ const Register = () => {
         ...newUser,
         img: url,
       });
-      setUser(result?.data?.info ); // Assuming the response data contains the user information
+      setUser(result?.data?.info); // Assuming the response data contains the user information
       navigate('/');
       toast.success('successfully registered', { ...toastify });
     } catch (error) {
@@ -131,10 +131,10 @@ const Register = () => {
             </div>
           </div>
 
-          <div className='title flex flex-col lg:my-5'>
+          <div className='title flex flex-col'>
             <span className='text-lg my-2'>Phone Number</span>
             <input
-              className='border-2 border-gray-400 rounded-sm my-2 h-10 px-3 text-sm focus:border-gray-500 focus:outline-none '
+              className='border-2 border-gray-400 rounded-sm  h-10 px-3 text-sm focus:border-gray-500 focus:outline-none '
               type='tel'
               name='phone'
               placeholder='+91-xxxx-xxxx-xx'
@@ -142,9 +142,9 @@ const Register = () => {
             />
           </div>
           <div className='title flex flex-col'>
-            <span className='text-lg lg:my-3'>Description</span>
+            <span className='text-lg lg:my-2'>Description</span>
             <textarea
-              className='border-2 border-gray-400 rounded-sm my-4 p-3 text-sm focus:border-gray-500 focus:outline-none '
+              className='border-2 border-gray-400 rounded-sm my-3 p-3 text-sm focus:border-gray-500 focus:outline-none '
               placeholder='Brief description to introduce your service to customers'
               name='desc'
               onChange={handleChange}
@@ -159,6 +159,14 @@ const Register = () => {
           >
             Create
           </button>
+          <div className=' mt-2 text-sm flex items-center'>
+            <div className='text-gray-500 text-lg'>Already a member ?</div>
+            <Link to='/register'>
+              <div className='font-semibold text-indigo-600 hover:text-indigo-500 mx-2 text-lg'>
+                Login
+              </div>
+            </Link>
+          </div>
         </div>
       </form>
     </div>

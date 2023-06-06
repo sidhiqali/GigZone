@@ -14,7 +14,7 @@ const Feature = () => {
   return (
     <div className='Feature-section py-14 md:py-36 flex  '>
       <div
-        className='absolute inset-0 z-0 md:bg-no-repeat md:bg-center md:bg-cover max-h-[610px] md:max-h-[730px] '
+        className='absolute inset-0 z-0 md:bg-no-repeat md:bg-center bg-cover max-h-[610px] md:max-h-[730px] '
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
       <div className='relative flex flex-col justify-center w-full '>

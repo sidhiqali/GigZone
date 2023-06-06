@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import newRequest from '../utils/newRequest';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { userContext } from '../contexts/userContext';
 import { toast } from 'react-toastify';
 import { toastify } from '../utils/toastify';
@@ -22,17 +22,20 @@ const Login = () => {
       if (result) {
         setUser(result.data);
         console.log(result.data);
-        toast.success('login successfully',{...toastify})
+        toast.success('login successfully', { ...toastify });
         navigate('/');
       } else {
         // Handle case where result is undefined or doesn't have the expected data
         setError('Invalid response');
-        toast.error('Invalid response',{...toastify});
+        toast.error('Invalid response', { ...toastify });
       }
     } catch (error) {
       console.log(error);
       setError(error.response?.data || 'An error occurred');
-      toast.error(error?.response?.data ,{...toastify}|| 'An error occurred');
+      toast.error(
+        error?.response?.data,
+        { ...toastify } || 'An error occurred'
+      );
     }
   };
 
@@ -103,13 +106,13 @@ const Login = () => {
           </div>
         </form>
 
-        <div className=' mt-5 text-sm'>
-          <a
-            href='#'
-            className='font-semibold text-indigo-600 hover:text-indigo-500'
-          >
-            Forgot password?
-          </a>
+        <div className=' mt-5 text-sm flex items-center'>
+          <div className='text-gray-500 text-lg'>Already have an account ?</div>
+          <Link to='/register'>
+            <div className='font-semibold text-indigo-600 hover:text-indigo-500 mx-2 text-lg'>
+              Signup
+            </div>
+          </Link>
         </div>
       </div>
     </div>
