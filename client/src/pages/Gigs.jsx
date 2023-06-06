@@ -9,6 +9,7 @@ import qs from 'qs';
 const Gigs = () => {
   const [active, setActive] = useState(false);
   const [sort, setSort] = useState('sales');
+  const [categoryName, setCategoryName] = useState('All Gigs');
   const minRef = useRef();
   const maxRef = useRef();
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Gigs = () => {
     queryFn: () => {
       const searchParams = new URLSearchParams(search);
       const category = searchParams.get('category');
+      setCategoryName(category);
       const searchGig = searchParams.get('searchGig');
       const queryParams = qs.stringify({
         searchGig,
@@ -32,7 +34,7 @@ const Gigs = () => {
     },
   });
   console.log(data);
-  console.log(search);
+  console.log(categoryName);
   const handlePrice = (e) => {
     e.preventDefault();
     refetch();
@@ -50,9 +52,11 @@ const Gigs = () => {
     <div className='min-h-[calc(100vh-140px)] h-full px-14 xl:px-40 py-8'>
       <div className='container py-3'>
         <div className='category text-gray-600 text-sm py-1'>
-          Graphic design{' '}
+          GigZone {'>'} {categoryName === null ? 'All Gigs' : categoryName}
         </div>
-        <div className='text-black text-3xl font-semibold'>AI Artists</div>
+        <div className='text-black text-3xl font-semibold'>
+          Discover Your Ideal Solutions
+        </div>
         <div className='text-gray-600 text-sm py-1'>
           Explore the boundaries of art and technology with GigZone's artists
         </div>

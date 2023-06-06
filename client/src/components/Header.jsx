@@ -63,9 +63,6 @@ const Header = () => {
             <div className='sm:flex hidden sm:ml-6'>Explore</div>
           </Link>
           <div className='sm:flex hidden sm:ml-6'>English</div>
-          {!user?.isSeller && (
-            <div className='sm:flex hidden sm:ml-6'>Become Seller</div>
-          )}
           {!user && (
             <Link to='/login'>
               {' '}
@@ -75,7 +72,7 @@ const Header = () => {
           {!user && (
             <Link to='/register'>
               <button
-                className='flex sm:ml-6  px-5 py-0.5 rounded-md hover:bg-slate-400 hover:text-slate-800 border-2 border-blue-900'
+                className='flex sm:ml-6  px-5 py-0.5 rounded-md hover:bg-slate-200 hover:text-slate-800 border-2 border-blue-900'
                 type='button'
               >
                 Join
@@ -101,7 +98,7 @@ const Header = () => {
                 <span className='ml-2'>{user.username}</span>
               </div>
               {userOpen && (
-                <div className=' z-10 options transition-all ease cursor-pointer flex flex-col absolute border-2 rounded-md py-5 px-5 md:px-9 mt-3 bg-slate-300 text-blue-900 justify-center items-center'>
+                <div className=' z-10 options transition-all ease cursor-pointer flex flex-col absolute border-2 rounded-md py-5 px-5 md:px-9 mt-3 bg-slate-100 text-blue-900 justify-center items-center'>
                   {user.isSeller && (
                     <>
                       <Link to='/mygigs'>

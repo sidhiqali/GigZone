@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import newRequest from '../utils/newRequest';
 import { Link, useParams } from 'react-router-dom';
 import { userContext } from '../contexts/userContext';
+import { Loader } from '../components';
 
 const Message = () => {
   const { id } = useParams();
@@ -68,11 +69,11 @@ const Message = () => {
           {'>'} {buyer?.username} {'>'}
         </span>
         {isLoading ? (
-          'loading'
+          <Loader />
         ) : error ? (
           'error'
         ) : (
-          <div className='messages overflow-y-scroll  min-h-96 flex-grow-1 max-h-96 py-6 flex flex-col justify-end px-4 mx-60 rounded-md shadow-violet-300 shadow-inner  mt-8'>
+          <div className='messages overflow-y-scroll  h-96 flex-grow-1 max-h-96 py-6 flex flex-col justify-end px-4 mx-60 rounded-md shadow-violet-300 shadow-inner  mt-8'>
             {data.map((m) => {
               return (
                 <div

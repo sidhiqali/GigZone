@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
 import { Link, useParams } from 'react-router-dom';
 import { Reviews, Loader } from '../components';
+import moment from 'moment';
 const Gig = () => {
   const { id } = useParams();
 
@@ -180,7 +181,7 @@ const Gig = () => {
                     <div className='right-details pr-8'>
                       <div className='Member py-3'>
                         <div className='text-gray-500'>Member Since</div>
-                        <div>{dataUser?.createdAt}</div>
+                        <div>{moment(dataUser?.updatedAt).fromNow()}</div>
                       </div>
                       <div className='response'>
                         <div className='text-gray-500'>Last delivery</div>
