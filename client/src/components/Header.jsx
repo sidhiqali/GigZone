@@ -69,11 +69,12 @@ const Header = () => {
               <div className='sm:flex hidden sm:ml-6'>Login</div>
             </Link>
           )}
+
           {!user && (
             <Link to='/register'>
               <button
-                className='flex sm:ml-6  px-5 py-0.5 rounded-md hover:bg-slate-200 hover:text-slate-800 border-2 border-blue-900'
                 type='button'
+                className=' ml-3 border border-gray-400 bg-gradient-to-br from-purple-700 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center mr-2 mb-2'
               >
                 Join
               </button>
