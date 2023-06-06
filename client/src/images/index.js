@@ -17,7 +17,7 @@ import deleteImg from './delete.png';
 import dislike from './dislike.png';
 import down from './down.png';
 import facebook from './facebook.png';
-import greenCheck from './greenCheck.png';
+import greenCheck from './greencheck.png';
 import heart from './heart.png';
 import instagram from './instagram.png';
 import language from './language.png';
@@ -62,5 +62,5 @@ export {
   search,
   starImg,
   twitter,
-  dog
+  dog,
 };
