@@ -21,7 +21,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: 'https://gigzone.netlify.app/', credentials: true }));
+app.use(cors({ origin: 'https://gigzone.netlify.app', credentials: true }));
 
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
@@ -34,6 +34,8 @@ app.use('/api/review', reviewRoute);
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || 'something went wrong';
+  res.set('Access-Control-Allow-Origin', 'https://gigzone.netlify.app');
+  res.set('Access-Control-Allow-Credentials', 'true');
 
   res.status(errorStatus).send(errorMessage);
 });
