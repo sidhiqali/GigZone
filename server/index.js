@@ -21,7 +21,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true }));
+app.use(cors({ origin: 'https://gigzone.netlify.app/', credentials: true }));
 
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
@@ -51,7 +51,7 @@ const startServer = async () => {
     connectDB(process.env.MONGODB_URL);
     app.listen(port, () => {
       console.log(
-        `server connected at port ${port} successfully`
+        `server connected at port ${port} successfully. https://gigzone.netlify.app/`
       );
     });
   } catch (error) {
