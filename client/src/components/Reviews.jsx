@@ -1,5 +1,5 @@
 import React from 'react';
-import Review from './review';
+import Review from './Review';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
 import Loader from './Loader';
@@ -12,7 +12,7 @@ function Reviews({ gigId }) {
       return newRequest(`review/${gigId}`).then((res) => res.data);
     },
   });
- 
+
   const mutation = useMutation({
     mutationFn: (review) => {
       return newRequest.post('/review', review);
