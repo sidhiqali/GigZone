@@ -29,7 +29,7 @@ const Feature = () => {
             onChange={(e) => setInput(e.target.value)}
           />
           <MdSearch
-            className='cursor-pointer w-11 md:w-[75px] h-12 rounded-r-md  bg-indigo-700 text-white p-2'
+            className='cursor-pointer w-14 md:w-[75px] h-12 rounded-r-md  bg-indigo-700 text-white p-2'
             onClick={handleSearch}
           />
         </div>
