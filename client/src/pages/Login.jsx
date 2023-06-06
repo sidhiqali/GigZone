@@ -15,14 +15,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await newRequest.post('auth/login', {
-        username,
-        password,
-      });
+      const result = await newRequest.post(
+        'auth/login',
+        {
+          username,
+          password,
+        },
+        {
+          withCredentials: true, // Include credentials in the request
+        }
+      );
       if (result) {
         setUser(result.data);
         console.log(result.data);
-        toast.success('login successfully', { ...toastify });
+        toast.success('Login successfully', { ...toastify });
         navigate('/');
       } else {
         // Handle case where result is undefined or doesn't have the expected data
@@ -32,10 +38,9 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       setError(error.response?.data || 'An error occurred');
-      toast.error(
-        error?.response?.data,
-        { ...toastify } || 'An error occurred'
-      );
+      toast.error(error?.response?.data || 'An error occurred', {
+        ...toastify,
+      });
     }
   };
 
