@@ -12,6 +12,11 @@ const Login = () => {
 
   const { user, setUser } = useContext(userContext);
 
+  const config = {
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true,
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -21,9 +26,7 @@ const Login = () => {
           username,
           password,
         },
-        {
-          withCredentials: true, // Include credentials in the request
-        }
+        config
       );
       if (result) {
         setUser(result.data);

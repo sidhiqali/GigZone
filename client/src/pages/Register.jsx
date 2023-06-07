@@ -19,14 +19,22 @@ const Register = () => {
   });
   const { user, setUser } = useContext(userContext);
   const navigate = useNavigate();
+  const config = {
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true,
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = await Upload(file);
     try {
-      const result = await newRequest.post('/auth/register', {
-        ...newUser,
-        img: url,
-      });
+      const result = await newRequest.post(
+        '/auth/register',
+        {
+          ...newUser,
+          img: url,
+        },
+        config
+      );
       setUser(result?.data?.info); // Assuming the response data contains the user information
       navigate('/');
       toast.success('successfully registered', { ...toastify });
