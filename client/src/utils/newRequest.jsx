@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const newRequest = axios.create({
-  baseURL: 'https://gigzone.up.railway.app/api/',
+  baseURL: 'https://gigzone.onrender.com/api/',
   withCredentials: true,
 });
 
