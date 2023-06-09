@@ -60,7 +60,7 @@ const Message = () => {
   }, [data, user._id, buyer]);
   useEffect(() => {
     refetchBuyer();
-  }, [buyerId, sellerId, refetchBuyer]);
+  }, [buyerId, refetchBuyer]);
 
   console.log(buyerId);
   return (
