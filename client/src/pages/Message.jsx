@@ -56,7 +56,7 @@ const Message = () => {
         setBuyerId(foundBuyerId);
       }
     }
-  }, [data, buyer]);
+  }, [data, buyer, user.userId]);
 
   console.log(buyerId);
   return (

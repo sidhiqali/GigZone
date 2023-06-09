@@ -51,7 +51,7 @@ const Messages = () => {
       const nameIds = data.map((c) => (user.isSeller ? c.buyerId : c.sellerId));
       setNameId(nameIds);
     }
-  }, [data, dataUser]);
+  }, [data, dataUser, user.isSeller]);
 
   console.log(dataUser);
   console.log(data);
