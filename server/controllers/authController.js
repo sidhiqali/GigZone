@@ -53,7 +53,8 @@ export const register = async (req, res, next) => {
       .cookie('accessToken', token, {
         sameSite: 'none',
         secure: true,
-        httpOnly: true,
+        expiresIn: '10d',
+        domain: 'gigzone.netlify.app',
       })
       .status(201)
       .send({ info, token });
@@ -84,7 +85,8 @@ export const login = async (req, res, next) => {
       .cookie('accessToken', token, {
         sameSite: 'none',
         secure: true,
-        httpOnly: true,
+        expiresIn: '10d',
+        domain: 'gigzone.netlify.app',
       })
       .status(200)
       .send(info);
