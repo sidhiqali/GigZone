@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: 'https://gigzone.netlify.app',
+    origin: true,
     credentials: true,
   })
 );
