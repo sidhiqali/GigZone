@@ -50,13 +50,13 @@ const Message = () => {
     e.target[0].value = '';
   };
   useEffect(() => {
-    if (data.userId && data.length > 0) {
+    if (data && data.length > 0) {
       const foundBuyerId = data.find((m) => m.userId !== user._id)?.userId;
       if (foundBuyerId) {
         setBuyerId(foundBuyerId);
       }
     }
-  }, [data, buyer, user.userId]);
+  }, [data, user._id, buyer]);
 
   console.log(buyerId);
   return (
