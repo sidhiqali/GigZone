@@ -36,8 +36,8 @@ const Message = () => {
     refetch: refetchBuyer,
   } = useQuery({
     queryKey: ['user'],
-    queryFn: () => {
-      return newRequest(`user/${buyerId}`).then((res) => res.data);
+    queryFn: async () => {
+      return await newRequest(`user/${buyerId}`).then((res) => res.data);
     },
     enabled: !!buyerId,
   });
