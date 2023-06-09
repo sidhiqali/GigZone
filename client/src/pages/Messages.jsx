@@ -32,6 +32,7 @@ const Messages = () => {
     isLoading: isLoadingUser,
     error: errorUser,
     data: dataUser,
+    refetch: refetchUserData,
   } = useQuery({
     queryKey: ['users', nameId],
     queryFn: () => {
@@ -51,8 +52,11 @@ const Messages = () => {
       const nameIds = data.map((c) => (user.isSeller ? c.buyerId : c.sellerId));
       setNameId(nameIds);
     }
-  }, [data, user.isSeller, dataUser]);
+  }, [data, user.isSeller]);
 
+  useEffect(() => {
+    refetchUserData();
+  }, [nameId, refetchUserData]);
   console.log(dataUser);
   console.log(data);
   return (
