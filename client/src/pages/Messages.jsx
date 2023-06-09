@@ -62,7 +62,7 @@ const Messages = () => {
   return (
     <div className='min-h-[calc(100vh-140px)] h-full px-14 xl:px-40 py-8'>
       {isLoading ? (
-        'loading'
+        <Loader />
       ) : error ? (
         'error'
       ) : (

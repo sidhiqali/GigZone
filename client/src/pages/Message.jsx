@@ -33,6 +33,7 @@ const Message = () => {
     isLoading: isLoadingUser,
     error: errorUser,
     data: buyer,
+    refetch: refetchBuyer,
   } = useQuery({
     queryKey: ['user'],
     queryFn: () => {
@@ -57,6 +58,9 @@ const Message = () => {
       }
     }
   }, [data, user._id, buyer]);
+  useEffect(() => {
+    refetchBuyer();
+  }, [buyerId, sellerId, refetchBuyer]);
 
   console.log(buyerId);
   return (
@@ -94,7 +98,7 @@ const Message = () => {
                       />
                     </div>
                   ) : isLoadingUser ? (
-                    '<Loader />'
+                    <Loader />
                   ) : errorUser ? (
                     errorUser.message
                   ) : (
