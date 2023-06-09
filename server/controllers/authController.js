@@ -54,7 +54,6 @@ export const register = async (req, res, next) => {
         sameSite: 'none',
         secure: true,
         expiresIn: '10d',
-        domain: 'gigzone.netlify.app',
       })
       .status(201)
       .send({ info, token });
@@ -86,7 +85,6 @@ export const login = async (req, res, next) => {
         sameSite: 'none',
         secure: true,
         expiresIn: '10d',
-        domain: 'gigzone.netlify.app',
       })
       .status(200)
       .send(info);
