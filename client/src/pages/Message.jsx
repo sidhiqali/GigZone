@@ -33,10 +33,11 @@ const Message = () => {
     isLoading: isLoadingUser,
     error: errorUser,
     data: buyer,
+    refetch: refetchBuyer,
   } = useQuery({
     queryKey: ['user'],
-    queryFn: () => {
-      return newRequest(`user/${buyerId}`).then((res) => res.data);
+    queryFn: async () => {
+      return await newRequest(`user/${buyerId}`).then((res) => res.data);
     },
     enabled: !!buyerId,
   });
@@ -50,13 +51,17 @@ const Message = () => {
     e.target[0].value = '';
   };
   useEffect(() => {
-    if (data.userId && data.length > 0) {
+    if (data && data.length > 0) {
       const foundBuyerId = data.find((m) => m.userId !== user._id)?.userId;
       if (foundBuyerId) {
         setBuyerId(foundBuyerId);
       }
     }
-  }, [data, buyer, user.userId]);
+  }, [data, user._id]);
+
+  useEffect(() => {
+    refetchBuyer();
+  }, [buyerId, refetchBuyer]);
 
   console.log(buyerId);
   return (
@@ -94,7 +99,7 @@ const Message = () => {
                       />
                     </div>
                   ) : isLoadingUser ? (
-                    '<Loader />'
+                    <Loader />
                   ) : errorUser ? (
                     errorUser.message
                   ) : (

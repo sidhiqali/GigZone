@@ -10,6 +10,16 @@ const UserProvider = ({ children }) => {
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUser(parsedUser);
+    } else {
+      const accessToken = document.cookie
+        .split('; ')
+        .find((cookie) => cookie.startsWith('accessToken='));
+
+      if (accessToken) {
+        const token = accessToken.split('=')[1];
+        const parsedUser = parseUserFromToken(token);
+        setUser(parsedUser);
+      }
     }
   }, []);
 

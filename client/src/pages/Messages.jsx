@@ -32,6 +32,7 @@ const Messages = () => {
     isLoading: isLoadingUser,
     error: errorUser,
     data: dataUser,
+    refetch: refetchUserData,
   } = useQuery({
     queryKey: ['users', nameId],
     queryFn: () => {
@@ -51,14 +52,17 @@ const Messages = () => {
       const nameIds = data.map((c) => (user.isSeller ? c.buyerId : c.sellerId));
       setNameId(nameIds);
     }
-  }, [data, dataUser, user.isSeller]);
+  }, [data, user.isSeller]);
 
+  useEffect(() => {
+    refetchUserData();
+  }, [nameId, refetchUserData]);
   console.log(dataUser);
   console.log(data);
   return (
     <div className='min-h-[calc(100vh-140px)] h-full px-14 xl:px-40 py-8'>
       {isLoading ? (
-        'loading'
+        <Loader />
       ) : error ? (
         'error'
       ) : (
