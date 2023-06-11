@@ -57,7 +57,11 @@ const Message = () => {
         setBuyerId(foundBuyerId);
       }
     }
+<<<<<<< HEAD
   }, [data, user._id]);
+=======
+  }, [data, user._id, buyerId]);
+>>>>>>> c275af49cbb54a873a053827b24647e357602580
 
   useEffect(() => {
     refetchBuyer();
