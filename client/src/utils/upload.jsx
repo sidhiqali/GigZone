@@ -4,7 +4,7 @@ const Upload = async (file) => {
   const data = new FormData();
   data.append('file', file);
   data.append('upload_preset', 'GigZone');
-  data.append('quality', 'auto:low'); // Set the desired image quality
+  data.append('quality', 'auto:low');
 
   try {
     const res = await axios.post(

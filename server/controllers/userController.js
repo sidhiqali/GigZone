@@ -1,5 +1,10 @@
 import User from '../mongoDB/models/userSchema.js';
 import { createError } from '../utils/createError.js';
+
+//@desc delete a user
+//@route DELETE /api/user/:id
+//@access private
+
 export const deleteUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
@@ -13,6 +18,11 @@ export const deleteUser = async (req, res, next) => {
     next(error);
   }
 };
+
+//@desc get user details
+//@route GET /api/user/:id
+//@access public
+
 export const getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);

@@ -11,6 +11,7 @@ const Header = () => {
   const [userOpen, setUserOpen] = useState(false);
   const { pathname } = useLocation();
   const ref = useRef(null);
+
   //For changing nav according to scrolling
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +33,9 @@ const Header = () => {
       toast.error(error?.response?.data);
     }
   };
+
+// close the dropdown whenever click outside of the dropdown
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -44,6 +48,7 @@ const Header = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+  
   return (
     <div
       className={`header-section z-50 sticky top-0 bg-hero bg-no-repeat bg-cover bg-center bg-fixed`}

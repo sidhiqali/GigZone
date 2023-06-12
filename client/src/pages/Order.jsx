@@ -9,15 +9,21 @@ const Order = () => {
   const { user, setUser } = useContext(userContext);
   const [nameId, setNameId] = useState('');
   const navigate = useNavigate();
+
+  //if not login redirect to login page
   if (!user) {
     navigate('/login');
   }
+
+  //fetch all orders
   const { isLoading, error, data } = useQuery({
     queryKey: [user?._id],
     queryFn: () => {
       return newRequest(`/order`).then((res) => res.data);
     },
   });
+
+  //fetch details of buyer or seller
   const {
     isLoading: isLoadingUser,
     error: errorUser,
@@ -32,6 +38,7 @@ const Order = () => {
     enabled: !!nameId,
   });
 
+  //fetch user id of buyer or seller from order details
   useEffect(() => {
     if (data && data.length > 0) {
       const nameIds = data.map((c) => (user.isSeller ? c.buyerId : c.sellerId));
@@ -39,19 +46,19 @@ const Order = () => {
     }
   }, [data, user.isSeller]);
 
-  console.log(dataUser);
-  console.log(data);
+  //message button handling
 
   const handleContact = async (order) => {
     const sellerId = order.sellerId;
     const buyerId = order.buyerId;
     const id = sellerId + buyerId;
-
+    //fetch previous message if had conversation before
     try {
       const res = await newRequest.get(`/conversations/single/${id}`);
       navigate(`/message/${res.data.id}`);
     } catch (err) {
       if (err.response.status === 404) {
+        //create new conversation if first time
         const res = await newRequest.post(`/conversations/`, {
           to: user.seller ? buyerId : sellerId,
         });
@@ -59,8 +66,7 @@ const Order = () => {
       }
     }
   };
-  console.log(user);
-  console.log(data);
+
   return (
     <div className='min-h-[calc(100vh-140px)] px-14 xl:px-40 py-8'>
       <div className='container w-full '>

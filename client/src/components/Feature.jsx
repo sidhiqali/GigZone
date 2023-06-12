@@ -6,11 +6,19 @@ import backgroundImage from '../images/bg.jpg';
 const Feature = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState('');
+
+  // search feature in home page
+
   const handleSearch = () => {
     if (input) {
       navigate(`/gigs?searchGig=${input}`);
     }
   };
+
+  const handleFeature = () => {
+    navigate('/gigs');
+  };
+
   return (
     <div className='Feature-section py-14 md:py-36 flex  '>
       <div
@@ -35,16 +43,28 @@ const Feature = () => {
         </div>
         <div className='popular hidden text-sm md:flex sm:mx-10 mx-5 lg:mx-48 max-w-lg md:max-w-lg justify-between p-5 text-white items-center'>
           <span className='text-lg'>Popular:</span>
-          <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
+          <button
+            onClick={handleFeature}
+            className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'
+          >
+            Animation
+          </button>
+          <button
+            onClick={handleFeature}
+            className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'
+          >
             Web design
           </button>
-          <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
-            Web design
-          </button>
-          <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
+          <button
+            onClick={handleFeature}
+            className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'
+          >
             Logo Design
           </button>
-          <button className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'>
+          <button
+            onClick={handleFeature}
+            className='border-2 rounded-2xl w-24 h-7 hover:bg-indigo-700'
+          >
             AI services
           </button>
         </div>

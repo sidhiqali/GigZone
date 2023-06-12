@@ -6,6 +6,8 @@ import Loader from './Loader';
 
 function Reviews({ gigId }) {
   const queryClient = useQueryClient();
+
+  //fetch all reviews for that particular gig
   const { isLoading, error, data } = useQuery({
     queryKey: ['Reviews'],
     queryFn: () => {
@@ -13,6 +15,7 @@ function Reviews({ gigId }) {
     },
   });
 
+//refetch reviews and if any user create new review 
   const mutation = useMutation({
     mutationFn: (review) => {
       return newRequest.post('/review', review);
@@ -22,6 +25,7 @@ function Reviews({ gigId }) {
     },
   });
 
+//create new review
   const handleSubmit = (e) => {
     e.preventDefault();
     const desc = e.target[0].value;

@@ -4,7 +4,7 @@ export const userContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+  // set user from local storage
   useEffect(() => {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
@@ -22,7 +22,7 @@ const UserProvider = ({ children }) => {
       }
     }
   }, []);
-
+  //set local storage from user data and login data
   useEffect(() => {
     localStorage.setItem('currentUser', JSON.stringify(user));
   }, [user]);

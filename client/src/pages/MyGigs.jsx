@@ -13,11 +13,13 @@ const MyGigs = () => {
   const { user } = useContext(userContext);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+//find gigs filtered by userId
   const { isLoading, error, data } = useQuery({
     queryKey: ['gigData'],
     queryFn: () => {
       const queryParams = new URLSearchParams(search);
-      const userID = user?._id; // Check if user._id is defined
+      const userID = user?._id; 
       if (!userID) {
         // Handle the case where user._id is not defined
         return Promise.reject(new Error('User ID is missing'));
@@ -27,9 +29,7 @@ const MyGigs = () => {
       return newRequest(`/gigs?${queryString}`).then((res) => res.data);
     },
   });
-
-  console.log(data);
-  console.log(user);
+// delete gigs by user
   const mutation = useMutation({
     mutationFn: (id) => {
       return newRequest.delete(`gigs/${id}`);
@@ -38,10 +38,13 @@ const MyGigs = () => {
       queryClient.invalidateQueries({ queryKey: ['gigData'] });
     },
   });
+
   const handleDelete = (id) => {
     mutation.mutate(id);
     toast.success('successfully deleted', { ...toastify });
   };
+
+  //update gig by user
   const handleUpdate = (id) => {
     navigate(`/edit/${id}`, { state: { isUpdate: true } });
   };

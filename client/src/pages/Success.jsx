@@ -8,13 +8,15 @@ const Success = () => {
   const params = new URLSearchParams(search);
   const payment_intent = params.get('payment_intent');
   const navigate = useNavigate();
+
+  //navigate to order section and update payment completed true
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await newRequest.put('/order', { payment_intent });
       navigate('/order');
     } catch (error) {
-      toast.error(error?.response?.data)
+      toast.error(error?.response?.data);
     }
   };
   return (

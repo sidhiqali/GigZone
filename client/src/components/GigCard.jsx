@@ -6,13 +6,15 @@ import newRequest from '../utils/newRequest';
 import { Loader } from '../components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 const GigCard = ({ gig }) => {
+  //useQuery to get seller details
+
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: [gig._id],
     queryFn: () => {
       return newRequest(`/user/${gig.userId}`).then((res) => res.data);
     },
   });
-  console.log(data);
+
   return (
     <Link to={`/gig/${gig._id}`} key={gig._id}>
       <div className='hover:shadow-md hover:shadow-slate-400 cursor-pointer container flex flex-col w-full sm:w-3/4 md:w-10/12 lg:w-3/4 xl:w-[280px]'>

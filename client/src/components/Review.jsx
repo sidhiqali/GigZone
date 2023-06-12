@@ -4,6 +4,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import newRequest from '../utils/newRequest';
 import Loader from './Loader';
 function Review({ review }) {
+
+  //fetch user depending on review
   const { isLoading, error, data } = useQuery({
     queryKey: [review.userId],
     queryFn: () => {

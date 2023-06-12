@@ -11,6 +11,8 @@ const Messages = () => {
   const [nameId, setNameId] = useState('');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  
+  //fetch all conversations from different users
   const { isLoading, error, data } = useQuery({
     queryKey: ['conversations'],
     queryFn: () =>
@@ -19,6 +21,7 @@ const Messages = () => {
       }),
   });
 
+//mark as read update 
   const mutation = useMutation({
     mutationFn: (id) => {
       return newRequest.put(`/conversations/${id}`);
@@ -28,6 +31,7 @@ const Messages = () => {
     },
   });
 
+  //fetch username of users who sent messages
   const {
     isLoading: isLoadingUser,
     error: errorUser,
@@ -47,6 +51,7 @@ const Messages = () => {
     mutation.mutate(id);
   };
 
+  //find userId from messages 
   useEffect(() => {
     if (data && data.length > 0) {
       const nameIds = data.map((c) => (user.isSeller ? c.buyerId : c.sellerId));
@@ -57,8 +62,7 @@ const Messages = () => {
   useEffect(() => {
     refetchUserData();
   }, [nameId, refetchUserData]);
-  console.log(dataUser);
-  console.log(data);
+
   return (
     <div className='min-h-[calc(100vh-140px)] h-full px-14 xl:px-40 py-8'>
       {isLoading ? (

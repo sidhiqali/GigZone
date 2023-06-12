@@ -13,6 +13,7 @@ const Pay = () => {
   const [clientSecret, setClientSecret] = useState('');
   const { id } = useParams();
 
+  //create new order and payment with stripe
   useEffect(() => {
     const makeRequest = async () => {
       try {

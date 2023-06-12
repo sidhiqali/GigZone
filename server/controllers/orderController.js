@@ -4,6 +4,11 @@ import dotenv from 'dotenv';
 import Stripe from 'stripe';
 
 dotenv.config();
+
+//@desc create new order and payment
+//@route POST /api/order/create-payment-intent/:gigId
+//@access private
+
 export const createOrder = async (req, res, next) => {
   const stripe = new Stripe(process.env.STRIPE_KEY);
 
@@ -33,6 +38,11 @@ export const createOrder = async (req, res, next) => {
     next(error);
   }
 };
+
+//@desc get all orders
+//@route GET /api/order/
+//@access private
+
 export const getOrders = async (req, res, next) => {
   try {
     const getOrders = await Order.find({
@@ -44,6 +54,11 @@ export const getOrders = async (req, res, next) => {
     next(error);
   }
 };
+
+//@desc update payment finished product as completed
+//@route PUT /api/order/
+//@access private
+
 export const confirmOrder = async (req, res, next) => {
   try {
     await Order.findOneAndUpdate(

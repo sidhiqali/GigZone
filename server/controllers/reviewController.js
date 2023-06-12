@@ -2,6 +2,10 @@ import { createError } from '../utils/createError.js';
 import Review from '../mongoDB/models/reviewSchema.js';
 import Gig from '../mongoDB/models/gigSchema.js';
 
+//@desc create a new review
+//@route POST /api/review/
+//@access private
+
 export const createReview = async (req, res, next) => {
   if (req.isSeller)
     return next(createError(403, 'seller cannot create a review'));
@@ -28,6 +32,11 @@ export const createReview = async (req, res, next) => {
     next(error);
   }
 };
+
+//@desc get all reviews
+//@route GET /api/review/
+//@access private
+
 export const getReviews = async (req, res, next) => {
   try {
     const reviews = await Review.find({ gigId: req.params.gigId });
@@ -36,4 +45,3 @@ export const getReviews = async (req, res, next) => {
     next(error);
   }
 };
-export const deleteReview = (req, res, next) => {};

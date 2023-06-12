@@ -3,6 +3,10 @@ import User from '../mongoDB/models/userSchema.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { createError } from '../utils/createError.js';
+
+//@desc register new user
+//@route POST /api/auth/register
+//@access private
 export const register = async (req, res, next) => {
   try {
     const { username, password, email, country } = req.body;
@@ -59,6 +63,11 @@ export const register = async (req, res, next) => {
     next(error);
   }
 };
+
+//@desc login user
+//@route POST /api/auth/login
+//@access private
+
 export const login = async (req, res, next) => {
   try {
     const { username } = req.body;
@@ -89,6 +98,10 @@ export const login = async (req, res, next) => {
     next(error);
   }
 };
+
+//@desc logout user
+//@route DELETE /api/auth/logout
+//@access private
 
 export const logout = (req, res) => {
   res

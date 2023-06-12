@@ -1,6 +1,10 @@
 import { createError } from '../utils/createError.js';
 import Conversation from '../mongoDB/models/conversationSchema.js';
 
+//@desc create a new Conversation
+//@route POST /api/conversations/
+//@access private
+
 export const createConversation = async (req, res, next) => {
   const newConversation = new Conversation({
     id: req.isSeller ? req.userId + req.body.to : req.body.to + req.userId,
@@ -18,14 +22,16 @@ export const createConversation = async (req, res, next) => {
   }
 };
 
+//@desc update conversation
+//@route PUT /api/conversations/:id
+//@access private
+
 export const updateConversation = async (req, res, next) => {
   try {
     const updatedConversation = await Conversation.findOneAndUpdate(
       { id: req.params.id },
       {
         $set: {
-          // readBySeller: true,
-          // readByBuyer: true,
           ...(req.isSeller ? { readBySeller: true } : { readByBuyer: true }),
         },
       },
@@ -38,6 +44,10 @@ export const updateConversation = async (req, res, next) => {
   }
 };
 
+//@desc fetch single conversation
+//@route GET /api/conversations/single/:id
+//@access private
+
 export const getSingleConversation = async (req, res, next) => {
   try {
     const conversation = await Conversation.findOne({ id: req.params.id });
@@ -47,6 +57,10 @@ export const getSingleConversation = async (req, res, next) => {
     next(err);
   }
 };
+
+//@desc get conversations
+//@route GET /api/conversations/
+//@access private
 
 export const getConversations = async (req, res, next) => {
   try {

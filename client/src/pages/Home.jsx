@@ -14,6 +14,7 @@ const Feature = lazy(() => import('../components/Feature'));
 const ProjectCard = lazy(() => import('../components/ProjectCard'));
 
 const Home = () => {
+  //fetch all gigs to show as sliders
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ['gigData'],
     queryFn: () => {

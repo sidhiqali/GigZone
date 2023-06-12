@@ -9,7 +9,7 @@ import { Reviews, Loader } from '../components';
 import moment from 'moment';
 const Gig = () => {
   const { id } = useParams();
-
+//fetching single gig
   const { isLoading, error, data } = useQuery({
     queryKey: ['data._id'],
     queryFn: () => {
@@ -18,6 +18,7 @@ const Gig = () => {
   });
   const userId = data?.userId;
 
+//fetching user who created gig
   const {
     isLoading: isLoadingUser,
     error: errorUser,
@@ -29,7 +30,8 @@ const Gig = () => {
     },
     enabled: !!userId,
   });
-
+  
+//settings of slider 
   const settings = {
     dots: false,
     infinite: true,

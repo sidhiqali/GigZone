@@ -9,9 +9,8 @@ const Message = () => {
   const { id } = useParams();
   const { user, setUser } = useContext(userContext);
   const [buyerId, setBuyerId] = useState('');
-
   const queryClient = useQueryClient();
-
+//fetch all messages in a conversation
   const { isLoading, error, data } = useQuery({
     queryKey: ['messages'],
     queryFn: () =>
@@ -19,7 +18,7 @@ const Message = () => {
         return res.data;
       }),
   });
-
+//sent a new message in a conversation
   const mutation = useMutation({
     mutationFn: (message) => {
       return newRequest.post(`/messages`, message);
@@ -29,6 +28,7 @@ const Message = () => {
     },
   });
 
+//fetch data of opposite user
   const {
     isLoading: isLoadingUser,
     error: errorUser,
@@ -50,6 +50,7 @@ const Message = () => {
     });
     e.target[0].value = '';
   };
+//finding userId of opposite user 
   useEffect(() => {
     if (data && data.length > 0) {
       const foundBuyerId = data.find((m) => m.userId !== user._id)?.userId;

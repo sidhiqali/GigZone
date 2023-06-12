@@ -25,12 +25,12 @@ const Add = () => {
   // Fetch the gig data for updating if it's an update operation
   useEffect(() => {
     if (isUpdate && id) {
+
       // Make an API call to fetch the gig data by ID
       const fetchGigData = async () => {
         try {
           const response = await newRequest.get(`/gigs/single/${id}`);
           const gigData = response.data;
-          // Set the form fields with the fetched gig data
           dispatch({ type: 'SET_FORM_DATA', payload: gigData });
         } catch (error) {
           console.error(error);
@@ -41,13 +41,12 @@ const Add = () => {
     }
   }, [isUpdate, id]);
 
+  //create or update Gig
   const mutation = useMutation({
     mutationFn: (gig) => {
       if (isUpdate) {
-        // Update gig API call
         return newRequest.put(`/gigs/${id}`, gig);
       } else {
-        // Create gig API call
         return newRequest.post('/gigs', gig);
       }
     },
@@ -91,6 +90,8 @@ const Add = () => {
       toast.error(error?.response?.data, { ...toastify });
     }
   };
+
+
   const handleFeatures = (e) => {
     e.preventDefault();
     dispatch({
@@ -100,6 +101,7 @@ const Add = () => {
     setFeatures('');
   };
 
+//upload image to cloudinary 
   const handleUpload = async (e) => {
     e.preventDefault();
     setUploading(true);
@@ -126,6 +128,8 @@ const Add = () => {
       setUploading(false);
     }
   };
+
+  //feature section delete 
   const handleDelete = (feature) => {
     dispatch({ type: 'REMOVE_FEATURES', payload: feature });
   };
@@ -133,7 +137,9 @@ const Add = () => {
   console.log(state);
   return (
     <div className='min-h-[calc(100vh-140px)] px-14 xl:px-40 py-8'>
-      <div className='header text-3xl text-gray-500 py-4'>Add New Gig</div>
+      <div className='header text-3xl text-gray-500 py-4'>
+        {isUpdate ? 'Edit' : 'Add'} Gig
+      </div>
       <form
         className='container flex flex-col md:flex-row w-full text-gray-500'
         onSubmit={handleSubmit}

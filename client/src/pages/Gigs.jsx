@@ -15,6 +15,7 @@ const Gigs = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
 
+  //fetching all gigs depending on filter and sort 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ['gigData'],
     queryFn: () => {
@@ -39,7 +40,8 @@ const Gigs = () => {
     e.preventDefault();
     refetch();
   };
-
+  
+//refetch gigs while sorting
   useEffect(() => {
     refetch();
   }, [sort]);

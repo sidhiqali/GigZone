@@ -1,6 +1,10 @@
 import { createError } from '../utils/createError.js';
 import Gig from '../mongoDB/models/gigSchema.js';
 
+//@desc create a new Gig
+//@route POST /api/gigs/
+//@access private
+
 export const createGig = async (req, res, next) => {
   if (!req.isSeller)
     return next(createError(403, 'only seller can create gig'));
@@ -11,6 +15,11 @@ export const createGig = async (req, res, next) => {
     next(error);
   }
 };
+
+//@desc delete Gig
+//@route DELETE /api/gigs/:id
+//@access private
+
 export const deleteGig = async (req, res, next) => {
   try {
     const gig = await Gig.findById(req.params.id);
@@ -22,6 +31,11 @@ export const deleteGig = async (req, res, next) => {
     next(error);
   }
 };
+
+//@desc show single gig
+//@route GET /api/gigs/:id
+//@access public
+
 export const showGig = async (req, res, next) => {
   try {
     const gig = await Gig.findById(req.params.id);
@@ -29,6 +43,11 @@ export const showGig = async (req, res, next) => {
     res.status(200).send(gig);
   } catch (error) {}
 };
+
+//@desc fetch all gigs
+//@route GET /api/gigs/
+//@access public
+
 export const showGigs = async (req, res, next) => {
   const q = req.query;
   let filters = {};
@@ -64,6 +83,11 @@ export const showGigs = async (req, res, next) => {
 function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
+
+//@desc Update gig
+//@route PUT /api/gigs/:id
+//@access private
+
 export const updateGig = async (req, res, next) => {
   try {
     const gigId = req.params.id;

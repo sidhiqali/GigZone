@@ -2,6 +2,10 @@ import { createError } from '../utils/createError.js';
 import Message from '../mongoDB/models/messageSchema.js';
 import Conversation from '../mongoDB/models/conversationSchema.js';
 
+//@desc create new message
+//@route POST /api/messages/
+//@access private
+
 export const createMessage = async (req, res, next) => {
   const newMessage = new Message({
     conversationId: req.body.conversationId,
@@ -27,6 +31,11 @@ export const createMessage = async (req, res, next) => {
     next(err);
   }
 };
+
+//@desc get messages
+//@route GET /api/messages/:id
+//@access private
+
 export const getMessages = async (req, res, next) => {
   try {
     const messages = await Message.find({ conversationId: req.params.id });
