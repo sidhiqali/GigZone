@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Lazy load the page components
+
 const Home = lazy(() => import('./pages/Home'));
 const Gigs = lazy(() => import('./pages/Gigs'));
 const Add = lazy(() => import('./pages/Add'));

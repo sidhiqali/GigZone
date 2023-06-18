@@ -53,13 +53,7 @@ export const cards = [
     title: 'SEO',
     desc: 'Unlock growth online',
     img: 'https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_2.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741668/seo-2x.png',
-  },
-  {
-    id: 8,
-    title: 'Illustration',
-    desc: 'Color you dreams',
-    img: 'https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_2.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741664/illustration-2x.png',
-  },
+  }
 ];
 
 export const projects = [
