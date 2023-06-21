@@ -9,7 +9,7 @@ const CategoryCard = ({ card }) => {
           <LazyLoadImage
             className='w-full h-full object-cover'
             src={card.img}
-            alt=''
+            alt='card image'
           />
           <div className='p-4'>
             <h2 className='text-xl font-bold text-white absolute top-4 left-4'>
