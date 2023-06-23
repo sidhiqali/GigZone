@@ -7,7 +7,7 @@ const Feature = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState('');
 
-  // search feature in home page
+  // search component in home page
 
   const handleSearch = () => {
     if (input) {
