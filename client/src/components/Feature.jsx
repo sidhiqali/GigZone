@@ -7,8 +7,6 @@ const Feature = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState('');
 
-  // search component
-
   const handleSearch = () => {
     if (input) {
       navigate(`/gigs?searchGig=${input}`);
