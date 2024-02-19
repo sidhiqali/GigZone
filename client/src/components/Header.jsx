@@ -160,10 +160,6 @@ const Header = () => {
           )}
         </div>
       </div>
-      {/* {pathname === '/' ? (
-      ) : (
-        ''
-      )} */}
     </div>
   );
 };
