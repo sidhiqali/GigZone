@@ -25,7 +25,7 @@ function Reviews({ gigId }) {
     },
   });
 
-//create new review
+//new review
   const handleSubmit = (e) => {
     e.preventDefault();
     const desc = e.target[0].value;
