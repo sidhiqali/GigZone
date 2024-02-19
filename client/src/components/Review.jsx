@@ -42,7 +42,6 @@ function Review({ review }) {
               .map((st, i) => (
                 <img key={i} className='h-3 w-3 mr-1' src={starImg} alt='' />
               ))}
-
             <div className='h-5 w-5 text-yellow-400'>{review.star}</div>
           </div>
           <div className='text-gray-500'>{review.desc}</div>
