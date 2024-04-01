@@ -72,7 +72,6 @@ const Header = () => {
               <div className='sm:flex hidden sm:ml-6'>Login</div>
             </Link>
           )}
-
           {!user && (
             <Link to='/register'>
               <button
