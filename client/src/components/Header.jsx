@@ -34,6 +34,7 @@ const Header = () => {
     }
   };
 
+  
 // close the dropdown whenever click outside of the dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
