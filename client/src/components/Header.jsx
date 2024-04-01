@@ -47,6 +47,7 @@ const Header = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
   
   return (
     <div
