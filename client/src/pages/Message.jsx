@@ -32,6 +32,7 @@ const Message = () => {
     },
   });
 
+  
 //fetch data of opposite user
   const {
     isLoading: isLoadingUser,
