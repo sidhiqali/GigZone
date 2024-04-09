@@ -52,6 +52,7 @@ const Message = () => {
     });
     e.target[0].value = '';
   };
+  
 //finding userId of opposite user 
   useEffect(() => {
     if (data && data.length > 0) {
