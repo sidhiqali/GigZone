@@ -10,6 +10,7 @@ const Message = () => {
   const { user, setUser } = useContext(userContext);
   const [buyerId, setBuyerId] = useState('');
   const queryClient = useQueryClient();
+  
 //fetch all messages in a conversation
   const { isLoading, error, data } = useQuery({
     queryKey: ['messages'],
