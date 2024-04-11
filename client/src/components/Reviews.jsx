@@ -5,6 +5,7 @@ import newRequest from '../utils/newRequest';
 import Loader from './Loader';
 
 function Reviews({ gigId }) {
+  
   const queryClient = useQueryClient();
   //fetch all reviews for that particular gig
   const { isLoading, error, data } = useQuery({
