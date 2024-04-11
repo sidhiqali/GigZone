@@ -12,6 +12,7 @@ const ProjectCard = ({ project }) => {
       return newRequest(`/user/${project?.userId}`).then((res) => res.data);
     },
   });
+  
   return (
     <Link to={`/gig/${project?._id}`} key={project?._id}>
       <div className='shadow-slate-300  shadow-lg w-full sm:w-3/4 md:w-10/12 lg:w-3/4 xl:w-10/12 p-2'>
