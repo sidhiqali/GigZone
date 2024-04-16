@@ -22,7 +22,6 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
   
   //Handle Logout
   const handleLogout = async () => {
