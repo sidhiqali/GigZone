@@ -23,6 +23,7 @@ const Header = () => {
     };
   }, []);
 
+  
   //Handle Logout
   const handleLogout = async () => {
     try {
