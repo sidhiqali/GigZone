@@ -34,7 +34,6 @@ const Header = () => {
       toast.error(error?.response?.data);
     }
   };
-
   
 // close the dropdown whenever click outside of the dropdown
   useEffect(() => {
