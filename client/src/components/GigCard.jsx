@@ -66,5 +66,5 @@ const GigCard = ({ gig }) => {
     </Link>
   );
 };
-
+ 
 export default GigCard;
