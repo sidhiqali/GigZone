@@ -7,6 +7,7 @@ import { Loader } from '../components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 const GigCard = ({ gig }) => {
 
+  
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: [gig._id],
     queryFn: () => {
