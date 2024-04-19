@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Categories } from '../constants/data';
 import { useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 const CategorySection = () => {
   const navigate = useNavigate();
   const handleNavigation = (title) => {
