@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 const CategoryCard = ({ card }) => {
-  
   return (
     <Link to='/gigs'>
       <div className='w-full sm:w-3/4 md:w-10/12 lg:w-3/4 xl:w-10/12 p-2'>
