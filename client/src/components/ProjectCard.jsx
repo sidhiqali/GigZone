@@ -4,6 +4,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 import newRequest from '../utils/newRequest';
 const ProjectCard = ({ project }) => {
+  
   //get user for each gig
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: [project._id],
