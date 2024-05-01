@@ -22,6 +22,7 @@ const UserProvider = ({ children }) => {
       }
     }
   }, []);
+  
   //set local storage from user data and login data
   useEffect(() => {
     localStorage.setItem('currentUser', JSON.stringify(user));
