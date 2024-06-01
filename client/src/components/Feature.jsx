@@ -12,7 +12,6 @@ const Feature = () => {
       navigate(`/gigs?searchGig=${input}`);
     }
   };
-
   const handleFeature = () => {
     navigate('/gigs');
   };
