@@ -6,7 +6,6 @@ import backgroundImage from '../images/bg.jpg';
 const Feature = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState('');
-
   const handleSearch = () => {
     if (input) {
       navigate(`/gigs?searchGig=${input}`);
