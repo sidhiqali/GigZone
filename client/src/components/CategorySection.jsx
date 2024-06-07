@@ -7,7 +7,7 @@ const CategorySection = () => {
   const navigate = useNavigate();
   const handleNavigation = (title) => {
     navigate(`/gigs?category=${title}`);
-  };
+  }; 
   return (
     <div className='flex items-center justify-center py-8 bg-slate-100'>
       <div className='container p-5 '>
